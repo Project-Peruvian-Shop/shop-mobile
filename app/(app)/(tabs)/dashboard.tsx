@@ -12,8 +12,8 @@ export default function Dashboard() {
         <Text>Dashboard Screen</Text>
 
         <Button
-          title="Ir a Products"
-          onPress={() => router.push(ROUTES.DASHBOARD.PRODUCTS.ALL.ENTIRE_PATH)}
+          title="Ir a Principal"
+          onPress={() => router.push(ROUTES.DASHBOARD.PRINCIPAL.ENTIRE_PATH)}
         />
       </View>
     </SafeAreaView>
