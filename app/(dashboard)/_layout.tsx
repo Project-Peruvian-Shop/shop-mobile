@@ -5,8 +5,8 @@ export default function DashboardLayout() {
   return (
     <Stack>
       <Stack.Screen
-        name={ROUTES.DASHBOARD.PRODUCTS.PATH}
-        options={{ title: ROUTES.DASHBOARD.PRODUCTS.NAME }}
+        name={ROUTES.DASHBOARD.PRODUCTS.ALL.PATH}
+        options={{ title: ROUTES.DASHBOARD.PRODUCTS.ALL.NAME }}
       />
     </Stack>
   );
