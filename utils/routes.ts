@@ -44,52 +44,52 @@ export const ROUTES = {
     CATEGORIES: {
       ALL: {
         NAME: "Categorías",
-        PATH: "(dashboard)/(categories)" as const,
-        ENTIRE_PATH: "/(dashboard)/(categories)" as const,
+        PATH: "(categories)/index" as const,
+        ENTIRE_PATH: "/(categories)" as const,
       },
       DETAIL: {
         NAME: "Categoría",
-        PATH: "(dashboard)/(categories)/detail" as const,
-        ENTIRE_PATH: "/(dashboard)/(categories)/detail" as const,
+        PATH: "(dashboard)/(categories)/[id]" as const,
+        GO: (id: number) => `/(dashboard)/(categories)/${id}` as const,
       },
     },
 
     COTIZACIONES: {
       ALL: {
         NAME: "Cotizaciones",
-        PATH: "(dashboard)/(cotizaciones)" as const,
-        ENTIRE_PATH: "/(dashboard)/(cotizaciones)" as const,
+        PATH: "(cotizaciones)/index" as const,
+        ENTIRE_PATH: "/(cotizaciones)" as const,
       },
       DETAIL: {
         NAME: "Cotización",
-        PATH: "(dashboard)/(cotizaciones)/detail" as const,
-        ENTIRE_PATH: "/(dashboard)/(cotizaciones)/detail" as const,
+        PATH: "(dashboard)/(cotizaciones)/[id]" as const,
+        GO: (id: number) => `/(dashboard)/(cotizaciones)/${id}` as const,
       },
     },
 
     USERS: {
       ALL: {
         NAME: "Usuarios",
-        PATH: "(dashboard)/(users)" as const,
-        ENTIRE_PATH: "/(dashboard)/(users)" as const,
+        PATH: "(users)/index" as const,
+        ENTIRE_PATH: "/(users)" as const,
       },
       DETAIL: {
         NAME: "Usuario",
-        PATH: "(dashboard)/(users)/detail" as const,
-        ENTIRE_PATH: "/(dashboard)/(users)/detail" as const,
+        PATH: "(dashboard)/(users)/[id]" as const,
+        GO: (id: number) => `/(dashboard)/(users)/${id}` as const,
       },
     },
 
     MESSAGES: {
       ALL: {
         NAME: "Mensajes",
-        PATH: "(dashboard)/(messages)" as const,
-        ENTIRE_PATH: "/(dashboard)/(messages)" as const,
+        PATH: "(messages)/index" as const,
+        ENTIRE_PATH: "/(messages)" as const,
       },
       DETAIL: {
         NAME: "Mensaje",
-        PATH: "(dashboard)/(messages)/detail" as const,
-        ENTIRE_PATH: "/(dashboard)/(messages)/detail" as const,
+        PATH: "(dashboard)/(messages)/[id]" as const,
+        GO: (id: number) => `/(dashboard)/(messages)/${id}` as const,
       },
     },
   },
