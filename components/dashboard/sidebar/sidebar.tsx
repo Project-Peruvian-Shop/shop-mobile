@@ -32,21 +32,6 @@ export default function Sidebar() {
       icon: "dashboard" as const,
     },
     {
-      name: ROUTES.DASHBOARD.PRODUCTS.ALL.NAME,
-      path: ROUTES.DASHBOARD.PRODUCTS.ALL.ENTIRE_PATH,
-      icon: "shopping-cart" as const,
-    },
-    {
-      name: ROUTES.DASHBOARD.USERS.ALL.NAME,
-      path: ROUTES.DASHBOARD.USERS.ALL.ENTIRE_PATH,
-      icon: "group" as const,
-    },
-    {
-      name: ROUTES.DASHBOARD.CATEGORIES.ALL.NAME,
-      path: ROUTES.DASHBOARD.CATEGORIES.ALL.ENTIRE_PATH,
-      icon: "category" as const,
-    },
-    {
       name: ROUTES.DASHBOARD.COTIZACIONES.ALL.NAME,
       path: ROUTES.DASHBOARD.COTIZACIONES.ALL.ENTIRE_PATH,
       icon: "request-quote" as const,
@@ -55,6 +40,21 @@ export default function Sidebar() {
       name: ROUTES.DASHBOARD.MESSAGES.ALL.NAME,
       path: ROUTES.DASHBOARD.MESSAGES.ALL.ENTIRE_PATH,
       icon: "message" as const,
+    },
+    {
+      name: ROUTES.DASHBOARD.PRODUCTS.ALL.NAME,
+      path: ROUTES.DASHBOARD.PRODUCTS.ALL.ENTIRE_PATH,
+      icon: "shopping-cart" as const,
+    },
+    {
+      name: ROUTES.DASHBOARD.CATEGORIES.ALL.NAME,
+      path: ROUTES.DASHBOARD.CATEGORIES.ALL.ENTIRE_PATH,
+      icon: "category" as const,
+    },
+    {
+      name: ROUTES.DASHBOARD.USERS.ALL.NAME,
+      path: ROUTES.DASHBOARD.USERS.ALL.ENTIRE_PATH,
+      icon: "group" as const,
     },
   ];
 
