@@ -1,3 +1,4 @@
+import { COLORS } from "@/utils/colors";
 import { ROUTES } from "@/utils/routes";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
@@ -8,14 +9,14 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: "#ffd33d",
-        headerStyle: {
-          backgroundColor: "#25292e",
-        },
         headerShadowVisible: false,
-        headerTintColor: "#fff",
+        tabBarActiveTintColor: COLORS.PRIMARY,
+        headerTintColor: COLORS.WHITE,
+        headerStyle: {
+          backgroundColor: COLORS.SECONDARY,
+        },
         tabBarStyle: {
-          backgroundColor: "#25292e",
+          backgroundColor: COLORS.SECONDARY,
         },
       }}
     >
@@ -54,8 +55,8 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <MaterialCommunityIcons
               name="monitor-dashboard"
-              size={24}
               color={color}
+              size={24}
             />
           ),
         }}
