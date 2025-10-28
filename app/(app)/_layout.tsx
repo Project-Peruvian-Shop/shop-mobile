@@ -20,9 +20,9 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name={ROUTES.HOME.PATH}
+        name={ROUTES.TABS.HOME.PATH}
         options={{
-          title: ROUTES.HOME.NAME,
+          title: ROUTES.TABS.HOME.NAME,
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={focused ? "home-sharp" : "home-outline"}
@@ -34,9 +34,9 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name={ROUTES.CART.PATH}
+        name={ROUTES.TABS.CART.PATH}
         options={{
-          title: ROUTES.CART.NAME,
+          title: ROUTES.TABS.CART.NAME,
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={focused ? "cart-sharp" : "cart-outline"}
@@ -48,9 +48,9 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name={ROUTES.DASHBOARD.PATH}
+        name={ROUTES.TABS.DASHBOARD.PATH}
         options={{
-          title: ROUTES.DASHBOARD.NAME,
+          title: ROUTES.TABS.DASHBOARD.NAME,
           tabBarIcon: ({ color, focused }) => (
             <MaterialCommunityIcons
               name="monitor-dashboard"
@@ -62,9 +62,9 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name={ROUTES.PROFILE.PATH}
+        name={ROUTES.TABS.PROFILE.PATH}
         options={{
-          title: ROUTES.PROFILE.NAME,
+          title: ROUTES.TABS.PROFILE.NAME,
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={focused ? "person-sharp" : "person-outline"}

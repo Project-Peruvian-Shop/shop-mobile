@@ -6,8 +6,8 @@ export default function RootLayout() {
   return (
     <SafeAreaProvider>
       <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name={ROUTES.GROUPS.APP.PATH} />
-        <Stack.Screen name={ROUTES.GROUPS.DASHBOARD.PATH} />
+        <Stack.Screen name={ROUTES.GROUPS.APP} />
+        <Stack.Screen name={ROUTES.GROUPS.DASHBOARD} />
       </Stack>
     </SafeAreaProvider>
   );
