@@ -1,12 +1,15 @@
-import axios from "axios";
-import { URL_API } from "../utils/constants";
-import type { ApiResponse, PaginatedResponse } from "./global.interfaces";
-import type { MensajeRequestDTO } from "../models/Mensaje/Mensaje_request_dto";
+import type { MensajeRequestDTO } from "@/models/Mensaje/Mensaje_request_dto";
 import type {
   MensajeCreateResponseDTO,
   MensajeDashboardDTO,
   MensajeDetalleResponseDTO,
-} from "../models/Mensaje/Mensaje_response_dto";
+} from "@/models/Mensaje/Mensaje_response_dto";
+import type {
+  ApiResponse,
+  PaginatedResponse,
+} from "@/services/global.interfaces";
+import { URL_API } from "@/utils/constants";
+import axios from "axios";
 
 const BASE_URL = URL_API + "/mensaje";
 
@@ -79,7 +82,9 @@ export async function changeStateMensaje(
 ): Promise<MensajeDashboardDTO> {
   const url = `${BASE_URL}/change_state/${id}`;
 
-  const res = await axios.put<ApiResponse<MensajeDashboardDTO>>(url, { nuevoEstado });
+  const res = await axios.put<ApiResponse<MensajeDashboardDTO>>(url, {
+    nuevoEstado,
+  });
 
   return res.data.data;
 }

@@ -1,7 +1,7 @@
+import type { ImagenResponseDTO } from "@/models/Imagen/Imagen_response_dto";
+import type { ApiResponse } from "@/services/global.interfaces";
+import { URL_API } from "@/utils/constants";
 import axios from "axios";
-import { URL_API } from "../utils/constants";
-import type { ImagenResponseDTO } from "../models/Imagen/Imagen_response_dto";
-import type { ApiResponse } from "./global.interfaces";
 
 const BASE_URL = `${URL_API}/imagen`;
 

@@ -1,13 +1,19 @@
-import axios from "axios";
-import { URL_API } from "../utils/constants";
-import type { ApiResponse, PaginatedResponse } from "./global.interfaces";
+import type {
+  UsuarioSaveRequestDto,
+  UsuarioUpdateRequestDto,
+} from "@/models/Usuario/Usuario_request_dto";
 import type {
   TrabajadoresDTO,
   UsuarioDashboardDTO,
   UsuarioProfileDTO,
   UsuarioResponseDto,
-} from "../models/Usuario/Usuario_response_dto";
-import type { UsuarioSaveRequestDto, UsuarioUpdateRequestDto } from "../models/Usuario/Usuario_request_dto";
+} from "@/models/Usuario/Usuario_response_dto";
+import type {
+  ApiResponse,
+  PaginatedResponse,
+} from "@/services/global.interfaces";
+import { URL_API } from "@/utils/constants";
+import axios from "axios";
 
 const BASE_URL = URL_API + "/usuario";
 
@@ -76,14 +82,13 @@ export async function saveUser(
   const res = await axios.post<ApiResponse<UsuarioResponseDto>>(url, body);
 
   return res.data.data;
-  
 }
 export async function updateUser(
   id: number,
   body: UsuarioUpdateRequestDto
 ): Promise<UsuarioResponseDto> {
   const url = `${BASE_URL}/update/${id}`;
-  
+
   const res = await axios.put<ApiResponse<UsuarioResponseDto>>(url, body);
 
   return res.data.data;

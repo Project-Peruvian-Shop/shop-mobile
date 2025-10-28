@@ -2,10 +2,10 @@ import type {
   LoginRequestDto,
   UsuarioRequestDto,
 } from "@/models/Usuario/Usuario_request_dto";
+import type { UsuarioResponseDto } from "@/models/Usuario/Usuario_response_dto";
+import type { ApiResponse } from "@/services/global.interfaces";
 import { URL_API } from "@/utils/constants";
 import axios from "axios";
-import type { UsuarioResponseDto } from "../models/Usuario/Usuario_response_dto";
-import type { ApiResponse } from "./global.interfaces";
 
 const BASE_URL = URL_API + "/auth";
 

@@ -1,13 +1,16 @@
+import type { CategoriaRequestDTO } from "@/models/Categoria/Categoria_request";
 import type {
   AllAndQuantityResponseDTO,
   CategoriaCreateResponseDTO,
   CategoriaDashboardDTO,
   ProductoResponseDTO,
 } from "@/models/Categoria/Categoria_response";
+import type {
+  ApiResponse,
+  PaginatedResponse,
+} from "@/services/global.interfaces";
 import { URL_API } from "@/utils/constants";
 import axios from "axios";
-import type { CategoriaRequestDTO } from "../models/Categoria/Categoria_request";
-import type { ApiResponse, PaginatedResponse } from "./global.interfaces";
 
 const BASE_URL = URL_API + "/categoria";
 

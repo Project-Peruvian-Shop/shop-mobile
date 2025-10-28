@@ -1,19 +1,22 @@
-import axios from "axios";
-import { URL_API } from "../utils/constants";
-import type { ApiResponse, PaginatedResponse } from "./global.interfaces";
 import type {
   CotizacionChangeStateDTO,
   CotizacionObservacionDTO,
   CotizacionRequestDTO,
-} from "../models/Cotizacion/Cotizacion_request_dto";
+} from "@/models/Cotizacion/Cotizacion_request_dto";
 import type {
   CotizacionCreateResponseDTO,
   CotizacionDashboardDTO,
   CotizacionFullDTO,
   CotizacionHistorialDTO,
   CotizacionPdfDTO,
-} from "../models/Cotizacion/Cotizacion_response_dto";
-import type { ProductoCarritoDetalleDTO } from "../models/CotizacionDetalle/Cotizacion_detalle";
+} from "@/models/Cotizacion/Cotizacion_response_dto";
+import type { ProductoCarritoDetalleDTO } from "@/models/CotizacionDetalle/Cotizacion_detalle";
+import type {
+  ApiResponse,
+  PaginatedResponse,
+} from "@/services/global.interfaces";
+import { URL_API } from "@/utils/constants";
+import axios from "axios";
 
 const BASE_URL = URL_API + "/cotizacion";
 

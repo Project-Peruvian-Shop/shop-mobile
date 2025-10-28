@@ -1,12 +1,12 @@
-import axios from "axios";
-import { URL_API } from "../utils/constants";
-import type { ApiResponse } from "./global.interfaces";
 import type {
   CategoriaCotizadaDTO,
   CotizacionesPorMesDTO,
   KPIResponseDTO,
   ProductoCotizadoDTO,
-} from "../models/dashboard/DashboardResponse";
+} from "@/models/dashboard/DashboardResponse";
+import type { ApiResponse } from "@/services/global.interfaces";
+import { URL_API } from "@/utils/constants";
+import axios from "axios";
 
 const BASE_URL = URL_API + "/dashboard";
 

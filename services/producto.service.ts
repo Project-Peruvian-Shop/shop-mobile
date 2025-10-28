@@ -1,13 +1,16 @@
-import axios from "axios";
-import { URL_API } from "../utils/constants";
-import type { ApiResponse, PaginatedResponse } from "./global.interfaces";
+import type { ProductoRequestDTO } from "@/models/Producto/Producto_request_dto";
 import type {
   PaginatedProductoResponseDTO,
   ProductoCreateResponseDTO,
   ProductoDashboardDTO,
   ProductoDTO,
-} from "../models/Producto/Producto_response_dto";
-import type { ProductoRequestDTO } from "../models/Producto/Producto_request_dto";
+} from "@/models/Producto/Producto_response_dto";
+import type {
+  ApiResponse,
+  PaginatedResponse,
+} from "@/services/global.interfaces";
+import { URL_API } from "@/utils/constants";
+import axios from "axios";
 
 const BASE_URL = URL_API + "/producto";
 
