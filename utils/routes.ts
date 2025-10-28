@@ -28,6 +28,12 @@ export const ROUTES = {
   },
 
   DASHBOARD: {
+    PRINCIPAL: {
+      NAME: "Principal",
+      PATH: "(principal)/index" as const,
+      ENTIRE_PATH: "/(principal)" as const,
+    },
+
     PRODUCTS: {
       ALL: {
         NAME: "Productos",
