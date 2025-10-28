@@ -1,5 +1,12 @@
-import { Text } from "react-native";
+import { Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Cart() {
-  return <Text>Cart screen</Text>;
+  return (
+    <SafeAreaView>
+      <View>
+        <Text>Cart screen</Text>
+      </View>
+    </SafeAreaView>
+  );
 }

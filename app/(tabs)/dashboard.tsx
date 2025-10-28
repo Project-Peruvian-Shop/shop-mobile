@@ -1,5 +1,12 @@
-import { Text } from "react-native";
+import { Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Dashboard() {
-  return <Text>Dashboard Screen</Text>;
+  return (
+    <SafeAreaView>
+      <View>
+        <Text>Dashboard Screen</Text>
+      </View>
+    </SafeAreaView>
+  );
 }
