@@ -39,7 +39,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={
-                focused ? "information-circle" : "information-circle-outline"
+                focused ? "cart-sharp" : "cart-outline"
               }
               color={color}
               size={24}
@@ -54,7 +54,7 @@ export default function TabLayout() {
           title: ROUTES.PROFILE.NAME,
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
-              name={focused ? "image" : "image-outline"}
+              name={focused ? "person-sharp" : "person-outline"}
               color={color}
               size={24}
             />
@@ -68,7 +68,7 @@ export default function TabLayout() {
           title: ROUTES.DASHBOARD.NAME,
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
-              name={focused ? "settings" : "settings-outline"}
+              name={focused ? "speedometer-sharp" : "speedometer-outline"}
               color={color}
               size={24}
             />
