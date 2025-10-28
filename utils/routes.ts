@@ -31,13 +31,13 @@ export const ROUTES = {
     PRODUCTS: {
       ALL: {
         NAME: "Productos",
-        PATH: "(dashboard)/(products)" as const,
-        ENTIRE_PATH: "/(dashboard)/(products)" as const,
+        PATH: "(products)/index" as const,
+        ENTIRE_PATH: "/(products)" as const,
       },
       DETAIL: {
         NAME: "Producto",
-        PATH: "(dashboard)/(products)/detail" as const,
-        ENTIRE_PATH: "/(dashboard)/(products)/detail" as const,
+        PATH: "(dashboard)/(products)/[id]" as const,
+        GO: (id: number) => `/(dashboard)/(products)/${id}` as const,
       },
     },
 

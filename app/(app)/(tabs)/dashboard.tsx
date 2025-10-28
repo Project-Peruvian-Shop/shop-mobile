@@ -13,7 +13,7 @@ export default function Dashboard() {
 
         <Button
           title="Ir a Products"
-          onPress={() => router.push(ROUTES.DASHBOARD.PRODUCTS.ENTIRE_PATH)}
+          onPress={() => router.push(ROUTES.DASHBOARD.PRODUCTS.ALL.ENTIRE_PATH)}
         />
       </View>
     </SafeAreaView>
