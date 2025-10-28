@@ -1,28 +1,44 @@
 export const ROUTES = {
   GROUPS: {
-    APP: {
-      NAME: "App",
-      PATH: "(app)",
+    APP: "(app)",
+    DASHBOARD: "(dashboard)",
+  },
+
+  TABS: {
+    HOME: {
+      NAME: "Inicio",
+      PATH: "(tabs)/index",
+    },
+    CART: {
+      NAME: "Carrito",
+      PATH: "(tabs)/cart",
     },
     DASHBOARD: {
       NAME: "Dashboard",
-      PATH: "(dashboard)",
+      PATH: "(tabs)/dashboard",
+    },
+    PROFILE: {
+      NAME: "Perfil",
+      PATH: "(tabs)/profile",
     },
   },
-  HOME: {
-    NAME: "Index",
-    PATH: "index",
-  },
-  CART: {
-    NAME: "Cart",
-    PATH: "cart",
-  },
-  PROFILE: {
-    NAME: "Profile",
-    PATH: "profile",
-  },
+
   DASHBOARD: {
-    NAME: "Dashboard",
-    PATH: "dashboard",
+    DASHBOARD: {
+      NAME: "Dashboard",
+      PATH: "(dashboard)/dashboard",
+    },
+    USERS: {
+      NAME: "Usuarios",
+      PATH: "(dashboard)/users",
+    },
+    PRODUCTS: {
+      NAME: "Productos",
+      PATH: "(dashboard)/products",
+    },
+    CATEGORIES: {
+      NAME: "Categorías",
+      PATH: "(dashboard)/categories",
+    },
   },
 };
