@@ -1,33 +1,27 @@
-import { ROUTES } from "@/utils/routes";
-import { Stack } from "expo-router";
+import Sidebar from "@/components/dashboard/sidebar/sidebar";
+import { COLORS } from "@/utils/colors";
+import { Slot } from "expo-router";
+import { StyleSheet, View } from "react-native";
 
 export default function DashboardLayout() {
   return (
-    <Stack>
-      <Stack.Screen
-        name={ROUTES.DASHBOARD.PRODUCTS.ALL.PATH}
-        options={{ title: ROUTES.DASHBOARD.PRODUCTS.ALL.NAME }}
-      />
+    <View style={styles.container}>
+      <Sidebar />
 
-      <Stack.Screen
-        name={ROUTES.DASHBOARD.CATEGORIES.ALL.PATH}
-        options={{ title: ROUTES.DASHBOARD.CATEGORIES.ALL.NAME }}
-      />
-
-      <Stack.Screen
-        name={ROUTES.DASHBOARD.COTIZACIONES.ALL.PATH}
-        options={{ title: ROUTES.DASHBOARD.COTIZACIONES.ALL.NAME }}
-      />
-
-      <Stack.Screen
-        name={ROUTES.DASHBOARD.MESSAGES.ALL.PATH}
-        options={{ title: ROUTES.DASHBOARD.MESSAGES.ALL.NAME }}
-      />
-
-      <Stack.Screen
-        name={ROUTES.DASHBOARD.USERS.ALL.PATH}
-        options={{ title: ROUTES.DASHBOARD.USERS.ALL.NAME }}
-      />
-    </Stack>
+      <View style={styles.content}>
+        <Slot />
+      </View>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: COLORS.LIGHTGRAY,
+  },
+  content: {
+    flex: 1,
+    marginTop: 40,
+  },
+});
