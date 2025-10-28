@@ -2,6 +2,7 @@ import { Tabs } from "expo-router";
 
 import { ROUTES } from "@/utils/routes";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
 export default function TabLayout() {
   return (
@@ -38,23 +39,7 @@ export default function TabLayout() {
           title: ROUTES.CART.NAME,
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
-              name={
-                focused ? "cart-sharp" : "cart-outline"
-              }
-              color={color}
-              size={24}
-            />
-          ),
-        }}
-      />
-
-      <Tabs.Screen
-        name={ROUTES.PROFILE.PATH}
-        options={{
-          title: ROUTES.PROFILE.NAME,
-          tabBarIcon: ({ color, focused }) => (
-            <Ionicons
-              name={focused ? "person-sharp" : "person-outline"}
+              name={focused ? "cart-sharp" : "cart-outline"}
               color={color}
               size={24}
             />
@@ -67,8 +52,22 @@ export default function TabLayout() {
         options={{
           title: ROUTES.DASHBOARD.NAME,
           tabBarIcon: ({ color, focused }) => (
+            <MaterialCommunityIcons
+              name="monitor-dashboard"
+              size={24}
+              color={color}
+            />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name={ROUTES.PROFILE.PATH}
+        options={{
+          title: ROUTES.PROFILE.NAME,
+          tabBarIcon: ({ color, focused }) => (
             <Ionicons
-              name={focused ? "speedometer-sharp" : "speedometer-outline"}
+              name={focused ? "person-sharp" : "person-outline"}
               color={color}
               size={24}
             />
