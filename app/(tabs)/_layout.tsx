@@ -1,5 +1,6 @@
 import { Tabs } from "expo-router";
 
+import { ROUTES } from "@/utils/routes";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function TabLayout() {
@@ -18,9 +19,9 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name={ROUTES.HOME.PATH}
         options={{
-          title: "Home",
+          title: ROUTES.HOME.NAME,
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={focused ? "home-sharp" : "home-outline"}
@@ -32,9 +33,9 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name="about"
+        name={ROUTES.CART.PATH}
         options={{
-          title: "About",
+          title: ROUTES.CART.NAME,
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={
@@ -48,12 +49,26 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name="photo"
+        name={ROUTES.PROFILE.PATH}
         options={{
-          title: "Photo",
+          title: ROUTES.PROFILE.NAME,
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={focused ? "image" : "image-outline"}
+              color={color}
+              size={24}
+            />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name={ROUTES.DASHBOARD.PATH}
+        options={{
+          title: ROUTES.DASHBOARD.NAME,
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? "settings" : "settings-outline"}
               color={color}
               size={24}
             />
