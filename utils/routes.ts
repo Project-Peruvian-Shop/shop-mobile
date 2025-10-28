@@ -1,4 +1,14 @@
 export const ROUTES = {
+  GROUPS: {
+    APP: {
+      NAME: "App",
+      PATH: "(app)",
+    },
+    DASHBOARD: {
+      NAME: "Dashboard",
+      PATH: "(dashboard)",
+    },
+  },
   HOME: {
     NAME: "Index",
     PATH: "index",
