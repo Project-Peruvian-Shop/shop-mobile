@@ -1,0 +1,53 @@
+export interface DashboardCategoriaDTO {
+  categoriaID: number;
+  categoriaNombre: string;
+  categoriaCantidad: number;
+}
+
+export interface DashboardLastCotizacionDTO {
+  id: number;
+  numero: string;
+  totalItems: number;
+  estado: string;
+}
+
+export interface DashboardMensajeDTO {
+  id: number;
+  contenido: string;
+  tipo: string;
+  creacion: string;
+}
+
+export interface DashboardProductoDTO {
+  producto_nombre: string;
+  producto_cantidad_mes: number;
+}
+
+export interface DashboardCotizacionDTO {
+  cotizacionesNombreMes: string;
+  cotizacionesCantidadMes: number;
+}
+
+export interface KPIResponseDTO {
+  cotizacionesPendientes: number;
+  cotizacionesAceptadas: number;
+  mensajesPendientes: number;
+}
+
+export interface CotizacionesPorMesDTO {
+  year: number;
+  mes: number;
+  cantidad: number;
+}
+
+export interface ProductoCotizadoDTO {
+  productoID: number;
+  nombreProducto: string;
+  cantidadApariciones: number;
+}
+
+export interface CategoriaCotizadaDTO {
+  categoriaID: number;
+  nombreCategoria: string;
+  cantidadCotizaciones: number;
+}
