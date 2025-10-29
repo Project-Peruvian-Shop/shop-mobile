@@ -27,6 +27,13 @@ export const styles = StyleSheet.create({
     color: "#333",
     textAlign: "center",
   },
+  actionsCell: {
+    width: 160,
+    padding: 6,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   actions: {
     flexDirection: "row",
   },

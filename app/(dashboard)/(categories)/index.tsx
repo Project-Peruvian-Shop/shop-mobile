@@ -34,7 +34,7 @@ export default function Categories() {
   };
 
   const columns: Column<CategoriaDashboardDTO>[] = [
-    { header: "ID", accessor: "id" },
+    { header: "ID", accessor: "id", columnWidth: 80 },
     {
       header: "Nombre",
       accessor: "nombre",
@@ -42,7 +42,7 @@ export default function Categories() {
         return <Text style={{ textAlign: "left" }}>{row.nombre}</Text>;
       },
     },
-    { header: "Categoría", accessor: "norma" },
+    { header: "Categoría", accessor: "norma", columnWidth: 160 },
     {
       header: "Usos",
       accessor: "usos",

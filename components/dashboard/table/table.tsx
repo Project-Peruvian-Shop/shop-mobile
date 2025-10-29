@@ -5,6 +5,7 @@ import { styles } from "./styles";
 export interface Column<T> {
   header: string;
   accessor: keyof T;
+  columnWidth?: number;
   render?: (value: unknown, row: T) => React.ReactNode;
 }
 
@@ -38,12 +39,19 @@ export function DashboardTable<T extends { id: number | string }>({
           {/* Headers */}
           <View style={styles.headerRow}>
             {columns.map((col) => (
-              <View key={String(col.accessor)} style={styles.cell}>
+              <View
+                key={String(col.accessor)}
+                style={
+                  col.columnWidth
+                    ? { width: col.columnWidth, padding: 6 }
+                    : styles.cell
+                }
+              >
                 <Text style={styles.th}>{col.header}</Text>
               </View>
             ))}
             {actions && (
-              <View style={styles.cell}>
+              <View style={styles.actionsCell}>
                 <Text style={styles.th}>Acciones</Text>
               </View>
             )}
@@ -60,7 +68,14 @@ export function DashboardTable<T extends { id: number | string }>({
                   {columns.map((col) => {
                     const value = row[col.accessor];
                     return (
-                      <View key={String(col.accessor)} style={styles.cell}>
+                      <View
+                        key={String(col.accessor)}
+                        style={
+                          col.columnWidth
+                            ? { width: col.columnWidth, padding: 6 }
+                            : styles.cell
+                        }
+                      >
                         <Text style={styles.td}>
                           {col.render ? col.render(value, row) : String(value)}
                         </Text>
@@ -68,7 +83,7 @@ export function DashboardTable<T extends { id: number | string }>({
                     );
                   })}
                   {actions && (
-                    <View style={styles.cell}>
+                    <View style={styles.actionsCell}>
                       <View style={styles.actions}>
                         {actions.map((action, idx) => (
                           <Pressable
