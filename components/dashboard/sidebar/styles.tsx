@@ -6,7 +6,7 @@ export const { width } = Dimensions.get("window");
 export const styles = StyleSheet.create({
   menuBtn: {
     position: "absolute",
-    top: 40,
+    top: 46,
     left: 10,
     zIndex: 100,
     backgroundColor: COLORS.SECONDARY,
