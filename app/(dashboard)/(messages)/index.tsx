@@ -1,3 +1,4 @@
+import MapCard from "@/components/dashboard/mapcard/mapcard";
 import {
   Action,
   Column,
@@ -34,8 +35,15 @@ export default function Messages() {
   };
 
   const columns: Column<MensajeDashboardDTO>[] = [
-    { header: "ID", accessor: "id", columnWidth: 50, textAlign: "center" },
-    { header: "Tipo", accessor: "tipo", columnWidth: 120 },
+    { header: "ID", accessor: "id", columnWidth: 50 },
+    {
+      header: "Tipo",
+      accessor: "tipo",
+      columnWidth: 150,
+      render: (_, row) => {
+        return <MapCard property="tipoMensaje" value={row.tipo} />;
+      },
+    },
     {
       header: "Mensaje",
       accessor: "mensaje",
@@ -55,30 +63,9 @@ export default function Messages() {
     {
       header: "Estado",
       accessor: "estado",
-      columnWidth: 100,
+      columnWidth: 150,
       render: (_, row) => {
-        let color = "#555";
-        switch (row.estado) {
-          case "PENDIENTE":
-            color = "orange";
-            break;
-          case "EN_PROCESO":
-            color = "#007bff";
-            break;
-          case "RESUELTO":
-            color = "green";
-            break;
-          case "CERRADO":
-            color = "gray";
-            break;
-        }
-        return (
-          <Text
-            style={{ color, fontWeight: "600", textTransform: "capitalize" }}
-          >
-            {row.estado.replace("_", " ")}
-          </Text>
-        );
+        return <MapCard property="estadoMensaje" value={row.estado} />;
       },
     },
   ];

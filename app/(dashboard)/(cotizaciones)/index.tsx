@@ -1,3 +1,4 @@
+import MapCard from "@/components/dashboard/mapcard/mapcard";
 import {
   Action,
   Column,
@@ -34,7 +35,7 @@ export default function Cotizaciones() {
   };
 
   const columns: Column<CotizacionDashboardDTO>[] = [
-    { header: "ID", accessor: "id", columnWidth: 60, textAlign: "center" },
+    { header: "ID", accessor: "id", columnWidth: 60 },
     { header: "N° Cotización", accessor: "numeroCotizacion", columnWidth: 140 },
     { header: "Cliente", accessor: "clienteNombre", textAlign: "left" },
     { header: "Documento", accessor: "clienteDocumento", columnWidth: 120 },
@@ -50,21 +51,9 @@ export default function Cotizaciones() {
     {
       header: "Estado",
       accessor: "estado",
-      columnWidth: 100,
+      columnWidth: 150,
       render: (_, row) => (
-        <Text
-          style={{
-            color:
-              row.estado === "APROBADA"
-                ? "green"
-                : row.estado === "RECHAZADA"
-                ? "red"
-                : "orange",
-            fontWeight: "600",
-          }}
-        >
-          {row.estado}
-        </Text>
+        <MapCard property="estadoCotizacion" value={row.estado} />
       ),
     },
     {
