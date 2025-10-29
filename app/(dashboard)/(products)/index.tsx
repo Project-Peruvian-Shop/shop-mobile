@@ -61,7 +61,6 @@ export default function Products() {
     },
   ];
 
-  // ⚙️ Acciones por fila
   const actions: Action<PaginatedProductoResponseDTO>[] = [
     {
       label: "Editar",
@@ -74,7 +73,6 @@ export default function Products() {
     },
   ];
 
-  // 🖼️ Render principal
   return (
     <View style={{ paddingHorizontal: 12, paddingVertical: 20 }}>
       <Text
