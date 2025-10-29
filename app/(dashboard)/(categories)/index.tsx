@@ -7,6 +7,7 @@ import { CategoriaDashboardDTO } from "@/models/Categoria/Categoria_response";
 import { getAllCategories } from "@/services/categoria.service";
 import { PaginatedResponse } from "@/services/global.interfaces";
 import { ROUTES } from "@/utils/routes";
+import { truncateText } from "@/utils/utils.text";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
@@ -34,26 +35,14 @@ export default function Categories() {
   };
 
   const columns: Column<CategoriaDashboardDTO>[] = [
-    { header: "ID", accessor: "id", columnWidth: 80 },
-    {
-      header: "Nombre",
-      accessor: "nombre",
-      render(value, row) {
-        return <Text style={{ textAlign: "left" }}>{row.nombre}</Text>;
-      },
-    },
+    { header: "ID", accessor: "id", columnWidth: 50 },
+    { header: "Nombre", accessor: "nombre", textAlign: "left" },
     { header: "Categoría", accessor: "norma", columnWidth: 160 },
     {
       header: "Usos",
       accessor: "usos",
-      render: (_, row) => {
-        const palabras = row.usos.split(" ");
-        const textoCorto =
-          palabras.length > 12
-            ? palabras.slice(0, 12).join(" ") + "..."
-            : row.usos;
-        return <Text style={{ textAlign: "left" }}>{textoCorto}</Text>;
-      },
+      textAlign: "left",
+      render: (_, row) => truncateText(row.usos, 8),
     },
   ];
 
