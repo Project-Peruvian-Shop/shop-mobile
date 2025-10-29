@@ -11,9 +11,15 @@ export const styles = StyleSheet.create({
     backgroundColor: "#f3f3f3",
   },
   row: {
-    flexDirection: "row",
     borderBottomWidth: 1,
     borderBottomColor: "#eee",
+    paddingVertical: 8,
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "nowrap",
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "stretch",
   },
   cell: {
     width: 200,

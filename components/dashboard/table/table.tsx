@@ -6,6 +6,7 @@ export interface Column<T> {
   header: string;
   accessor: keyof T;
   columnWidth?: number;
+  textAlign?: "left" | "center" | "right";
   render?: (value: unknown, row: T) => React.ReactNode;
 }
 
@@ -41,13 +42,19 @@ export function DashboardTable<T extends { id: number | string }>({
             {columns.map((col) => (
               <View
                 key={String(col.accessor)}
-                style={
-                  col.columnWidth
-                    ? { width: col.columnWidth, padding: 6 }
-                    : styles.cell
-                }
+                style={[
+                  styles.cell,
+                  col.columnWidth ? { width: col.columnWidth } : {},
+                ]}
               >
-                <Text style={styles.th}>{col.header}</Text>
+                <Text
+                  style={[
+                    styles.th,
+                    col.textAlign ? { textAlign: col.textAlign } : {},
+                  ]}
+                >
+                  {col.header}
+                </Text>
               </View>
             ))}
             {actions && (
@@ -70,13 +77,17 @@ export function DashboardTable<T extends { id: number | string }>({
                     return (
                       <View
                         key={String(col.accessor)}
-                        style={
-                          col.columnWidth
-                            ? { width: col.columnWidth, padding: 6 }
-                            : styles.cell
-                        }
+                        style={[
+                          styles.cell,
+                          col.columnWidth ? { width: col.columnWidth } : {},
+                        ]}
                       >
-                        <Text style={styles.td}>
+                        <Text
+                          style={[
+                            styles.td,
+                            col.textAlign ? { textAlign: col.textAlign } : {},
+                          ]}
+                        >
                           {col.render ? col.render(value, row) : String(value)}
                         </Text>
                       </View>
