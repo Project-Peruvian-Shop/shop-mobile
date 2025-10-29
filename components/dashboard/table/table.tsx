@@ -65,7 +65,7 @@ export function DashboardTable<T extends { id: number | string }>({
           </View>
 
           {/* Scroll vertical para filas */}
-          <ScrollView style={{ maxHeight: 400 }}>
+          <ScrollView>
             {/* <--- altura máxima */}
             {data.length === 0 ? (
               <Text style={styles.empty}>No hay registros</Text>
