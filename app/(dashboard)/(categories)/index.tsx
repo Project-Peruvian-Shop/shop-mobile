@@ -28,8 +28,6 @@ export default function Categories() {
       const res = await getAllCategories(page);
       setCategorias(res);
       setTotalPages(res.totalPages);
-      console.log(res);
-      
     } finally {
       setLoading(false);
     }
