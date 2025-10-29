@@ -36,29 +36,34 @@ export default function Categories() {
   const columns: Column<CategoriaDashboardDTO>[] = [
     { header: "ID", accessor: "id" },
     { header: "Nombre", accessor: "nombre" },
+    { header: "Categoría", accessor: "norma" },
     { header: "Usos", accessor: "usos" },
-    {
-      header: "Norma",
-      accessor: "norma",
-      render: (value) => (value ? "Activo" : "Inactivo"),
-    },
   ];
 
   const actions: Action<CategoriaDashboardDTO>[] = [
     {
       label: "Editar",
+      // Abrir modal de edición
       onPress: (row) =>
         router.push(ROUTES.DASHBOARD.CATEGORIES.DETAIL.GO(row.id)),
     },
     {
       label: "Eliminar",
+      // Abrir modal de confirmación
       onPress: (row) => console.log("Eliminar", row.id),
     },
   ];
 
   return (
     <View style={{ padding: 16 }}>
-      <Text style={{ fontSize: 18, fontWeight: "bold", marginBottom: 10 }}>
+      <Text
+        style={{
+          fontSize: 18,
+          fontWeight: "bold",
+          textAlign: "center",
+          marginBottom: 16,
+        }}
+      >
         Categorías
       </Text>
 
