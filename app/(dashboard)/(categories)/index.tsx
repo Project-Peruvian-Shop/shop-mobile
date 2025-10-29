@@ -35,9 +35,26 @@ export default function Categories() {
 
   const columns: Column<CategoriaDashboardDTO>[] = [
     { header: "ID", accessor: "id" },
-    { header: "Nombre", accessor: "nombre" },
+    {
+      header: "Nombre",
+      accessor: "nombre",
+      render(value, row) {
+        return <Text style={{ textAlign: "left" }}>{row.nombre}</Text>;
+      },
+    },
     { header: "Categoría", accessor: "norma" },
-    { header: "Usos", accessor: "usos" },
+    {
+      header: "Usos",
+      accessor: "usos",
+      render: (_, row) => {
+        const palabras = row.usos.split(" ");
+        const textoCorto =
+          palabras.length > 12
+            ? palabras.slice(0, 12).join(" ") + "..."
+            : row.usos;
+        return <Text style={{ textAlign: "left" }}>{textoCorto}</Text>;
+      },
+    },
   ];
 
   const actions: Action<CategoriaDashboardDTO>[] = [
