@@ -4,7 +4,7 @@ import { Text, View } from "react-native";
 import { styles } from "./style";
 
 interface MapCardProps {
-  property: "tipoMensaje" | "estadoCotizacion" | "estadoMensaje";
+  property: "tipoMensaje" | "estadoCotizacion" | "estadoMensaje" | "rolUsuario";
   value: string;
 }
 
@@ -56,6 +56,19 @@ const mapperEstadoMensaje = (estado: string) => {
   }
 };
 
+const mapperUsuario = (rol: string) => {
+  switch (rol) {
+    case "ROLE_ADMIN":
+      return "Administrador";
+    case "ROLE_MANAGER":
+      return "Gerente";
+    case "ROLE_USER":
+      return "Usuario";
+    default:
+      return "Desconocido";
+  }
+};
+
 // === PALETA DE COLORES ===
 const colorPalette: Record<string, { color: string; background: string }> = {
   Pendiente: { color: COLORS.YELLOW, background: COLORS.LIGHTYELLOW },
@@ -69,6 +82,9 @@ const colorPalette: Record<string, { color: string; background: string }> = {
   Reclamo: { color: COLORS.PRIMARY, background: COLORS.LIGHTRED },
   Contáctenos: { color: COLORS.BLUE, background: COLORS.LIGHTBLUE },
   Desconocido: { color: COLORS.GRAY, background: COLORS.LIGHTGRAY },
+  Administrador: { color: COLORS.PRIMARY, background: COLORS.LIGHTRED },
+  Gerente: { color: COLORS.BLUE, background: COLORS.LIGHTBLUE },
+  Usuario: { color: COLORS.GREEN, background: COLORS.LIGHTGREEN },
 };
 
 export default function MapCard({ property, value }: MapCardProps) {
@@ -83,6 +99,9 @@ export default function MapCard({ property, value }: MapCardProps) {
       break;
     case "estadoMensaje":
       formattedValue = mapperEstadoMensaje(value);
+      break;
+    case "rolUsuario":
+      formattedValue = mapperUsuario(value);
       break;
     default:
       formattedValue = "Desconocido";

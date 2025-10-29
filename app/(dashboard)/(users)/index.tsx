@@ -1,3 +1,4 @@
+import MapCard from "@/components/dashboard/mapcard/mapcard";
 import {
   Action,
   Column,
@@ -48,40 +49,7 @@ export default function Users() {
       accessor: "rol",
       columnWidth: 120,
       render: (_, row) => {
-        let color = "#444";
-        let label = row.rol.replace("ROLE_", "");
-        switch (row.rol) {
-          case "ROLE_ADMIN":
-            color = "#e63946";
-            break;
-          case "ROLE_MANAGER":
-            color = "#007bff";
-            break;
-          case "ROLE_USER":
-            color = "#2a9d8f";
-            break;
-        }
-        return (
-          <View
-            style={{
-              backgroundColor: color + "20",
-              borderRadius: 10,
-              paddingHorizontal: 8,
-              paddingVertical: 4,
-              alignSelf: "flex-start",
-            }}
-          >
-            <Text
-              style={{
-                color,
-                fontWeight: "600",
-                textTransform: "capitalize",
-              }}
-            >
-              {label.toLowerCase()}
-            </Text>
-          </View>
-        );
+        return <MapCard property="rolUsuario" value={row.rol} />;
       },
     },
   ];
