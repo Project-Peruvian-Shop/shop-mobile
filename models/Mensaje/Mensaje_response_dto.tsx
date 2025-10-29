@@ -25,12 +25,6 @@ export interface MensajeDetalleResponseDTO extends MensajeBaseDTO {
 }
 
 //Mensaje dashboard
-
-export interface MensajeDashboardDTO {
-  mensaje_response_count_mes: number;
-  mensaje_pending_count_mes: number;
-}
-
 export interface MensajeDashboardDTO extends MensajeBaseDTO{
   tipo: string;
   mensaje: string;
