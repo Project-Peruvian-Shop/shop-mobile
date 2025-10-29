@@ -55,7 +55,7 @@ export default function Categories() {
   ];
 
   return (
-    <View style={{ padding: 16 }}>
+    <View style={{ paddingHorizontal: 12, paddingVertical: 20 }}>
       <Text
         style={{
           fontSize: 18,
