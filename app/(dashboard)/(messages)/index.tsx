@@ -35,7 +35,7 @@ export default function Messages() {
   };
 
   const columns: Column<MensajeDashboardDTO>[] = [
-    { header: "ID", accessor: "id", columnWidth: 50 },
+    { header: "ID", accessor: "id", columnWidth: 50, sticky: true },
     {
       header: "Tipo",
       accessor: "tipo",

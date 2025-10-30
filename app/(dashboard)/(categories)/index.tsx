@@ -35,7 +35,7 @@ export default function Categories() {
   };
 
   const columns: Column<CategoriaDashboardDTO>[] = [
-    { header: "ID", accessor: "id", columnWidth: 50 },
+    { header: "ID", accessor: "id", columnWidth: 50, sticky: true },
     { header: "Nombre", accessor: "nombre", textAlign: "left" },
     { header: "Categoría", accessor: "norma", columnWidth: 160 },
     {

@@ -35,7 +35,7 @@ export default function Cotizaciones() {
   };
 
   const columns: Column<CotizacionDashboardDTO>[] = [
-    { header: "ID", accessor: "id", columnWidth: 60 },
+    { header: "ID", accessor: "id", columnWidth: 60, sticky: true },
     { header: "N° Cotización", accessor: "numeroCotizacion", columnWidth: 140 },
     { header: "Cliente", accessor: "clienteNombre", textAlign: "left" },
     { header: "Documento", accessor: "clienteDocumento", columnWidth: 120 },

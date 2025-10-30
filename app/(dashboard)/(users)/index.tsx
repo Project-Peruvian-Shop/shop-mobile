@@ -34,7 +34,13 @@ export default function Users() {
   };
 
   const columns: Column<UsuarioDashboardDTO>[] = [
-    { header: "ID", accessor: "id", columnWidth: 50, textAlign: "center" },
+    {
+      header: "ID",
+      accessor: "id",
+      columnWidth: 50,
+      textAlign: "center",
+      sticky: true,
+    },
     {
       header: "Nombre",
       accessor: "nombre",

@@ -34,7 +34,13 @@ export default function Products() {
   };
 
   const columns: Column<PaginatedProductoResponseDTO>[] = [
-    { header: "ID", accessor: "id", columnWidth: 60, textAlign: "center" },
+    {
+      header: "ID",
+      accessor: "id",
+      columnWidth: 60,
+      textAlign: "center",
+      sticky: true,
+    },
     {
       header: "Imagen",
       accessor: "imagenUrl",
