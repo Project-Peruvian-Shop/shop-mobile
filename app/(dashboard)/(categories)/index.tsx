@@ -1,3 +1,4 @@
+import { SearchBar } from "@/components/dashboard/search/search";
 import {
   Action,
   Column,
@@ -61,17 +62,23 @@ export default function Categories() {
   ];
 
   return (
-    <View style={{ paddingHorizontal: 12, paddingVertical: 20 }}>
+    <View style={{ flex: 1, paddingHorizontal: 12, paddingVertical: 20 }}>
       <Text
         style={{
           fontSize: 18,
           fontWeight: "bold",
           textAlign: "center",
-          marginBottom: 16,
+          marginBottom: 20,
         }}
       >
         Categorías
       </Text>
+
+      <SearchBar
+        placeholder="Buscar cotizaciones..."
+        value=""
+        onChangeText={() => {}}
+      />
 
       {loading ? (
         <Text>Cargando...</Text>

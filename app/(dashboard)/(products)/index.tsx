@@ -1,3 +1,4 @@
+import { SearchBar } from "@/components/dashboard/search/search";
 import {
   Action,
   Column,
@@ -80,7 +81,7 @@ export default function Products() {
   ];
 
   return (
-    <View style={{ paddingHorizontal: 12, paddingVertical: 20 }}>
+    <View style={{ flex: 1, paddingHorizontal: 12, paddingVertical: 20 }}>
       <Text
         style={{
           fontSize: 18,
@@ -91,6 +92,12 @@ export default function Products() {
       >
         Productos
       </Text>
+
+      <SearchBar
+        placeholder="Buscar cotizaciones..."
+        value=""
+        onChangeText={() => {}}
+      />
 
       {loading ? (
         <Text>Cargando...</Text>
