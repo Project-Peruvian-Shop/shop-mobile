@@ -1,4 +1,5 @@
 import MapCard from "@/components/dashboard/mapcard/mapcard";
+import { SearchBar } from "@/components/dashboard/search/search";
 import {
   Action,
   Column,
@@ -101,6 +102,23 @@ export default function Cotizaciones() {
       >
         Cotizaciones
       </Text>
+
+      <View
+        style={{
+          flex: 1,
+          alignItems: "center",
+          marginVertical: 10,
+        }}
+      >
+        <SearchBar
+          placeholder="Buscar cotizaciones..."
+          value=""
+          onChangeText={() => {}}
+          results={[]}
+          onSelectResult={() => {}}
+          loading={false}
+        />
+      </View>
 
       {loading ? (
         <Text>Cargando...</Text>
