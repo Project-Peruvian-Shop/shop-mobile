@@ -185,15 +185,43 @@ export function DashboardTable<T extends { id: number | string }>({
         <Pressable
           onPress={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 0}
+          style={({ pressed }) => [
+            styles.buttonPagination,
+            currentPage === 0 && styles.disabledButton,
+            pressed && styles.pressed,
+          ]}
         >
-          <Text>{`<`}</Text>
+          <Text
+            style={[
+              styles.textButton,
+              currentPage === 0 && styles.disabledText,
+            ]}
+          >
+            ← Ant.
+          </Text>
         </Pressable>
-        <Text>{`${currentPage + 1} / ${totalPages}`}</Text>
+
+        <Text style={styles.pageIndicator}>
+          {`${currentPage + 1} / ${totalPages}`}
+        </Text>
+
         <Pressable
           onPress={() => onPageChange(currentPage + 1)}
           disabled={currentPage >= totalPages - 1}
+          style={({ pressed }) => [
+            styles.buttonPagination,
+            currentPage >= totalPages - 1 && styles.disabledButton,
+            pressed && styles.pressed,
+          ]}
         >
-          <Text>{`>`}</Text>
+          <Text
+            style={[
+              styles.textButton,
+              currentPage >= totalPages - 1 && styles.disabledText,
+            ]}
+          >
+            Sig. →
+          </Text>
         </Pressable>
       </View>
     </View>

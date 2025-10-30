@@ -1,3 +1,4 @@
+import { COLORS } from "@/utils/colors";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
@@ -55,14 +56,37 @@ export const styles = StyleSheet.create({
     padding: 12,
     color: "#888",
   },
+
   pagination: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     marginTop: 8,
-    gap: 12,
+    gap: 16,
   },
-  disabled: {
-    color: "#aaa",
+  buttonPagination: {
+    paddingHorizontal: 24,
+    paddingVertical: 10,
+    borderRadius: 8,
+    backgroundColor: COLORS.PRIMARY,
+  },
+  pressed: {
+    backgroundColor: "#e0e0e0",
+  },
+  disabledButton: {
+    backgroundColor: COLORS.LIGHTGRAY,
+  },
+  textButton: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: COLORS.WHITE,
+  },
+  disabledText: {
+    color: COLORS.WHITE,
+  },
+  pageIndicator: {
+    fontSize: 15,
+    fontWeight: "500",
+    color: COLORS.SECONDARY,
   },
 });
