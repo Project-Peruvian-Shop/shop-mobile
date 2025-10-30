@@ -3,6 +3,7 @@ export const COLORS = {
   LIGHTRED: "#fb234320",
   SECONDARY: "#1b2f33",
   WHITE: "#ffffff",
+  BLACK: "#000000",
   YELLOW: "#fad60d",
   LIGHTYELLOW: "#fad60d20",
   BLUE: "#0052d6",
@@ -14,4 +15,5 @@ export const COLORS = {
   DARKGRAY: "#c7c7c728",
   GRAY: "#6b7280",
   LIGHTGRAY: "#6b728020",
+  GRAY100: "#fafafa",
 };
