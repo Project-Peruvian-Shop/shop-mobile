@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
   icon: {
     position: "absolute",
     left: 16,
-    top: "30%",
+    top: "50%",
     transform: [{ translateY: -10 }],
     zIndex: 1,
   },
