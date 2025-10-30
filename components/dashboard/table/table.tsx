@@ -1,5 +1,6 @@
 import React from "react";
 import { Pressable, ScrollView, Text, View } from "react-native";
+import { DropdownActions } from "../dropdown/dropdown";
 import { styles } from "./styles";
 
 export interface Column<T> {
@@ -159,17 +160,7 @@ export function DashboardTable<T extends { id: number | string }>({
                     })}
                     {actions && (
                       <View style={styles.actionsCell}>
-                        <View style={styles.actions}>
-                          {actions.map((action, idx) => (
-                            <Pressable
-                              key={idx}
-                              style={styles.button}
-                              onPress={() => action.onPress(row)}
-                            >
-                              <Text>{action.label}</Text>
-                            </Pressable>
-                          ))}
-                        </View>
+                        <DropdownActions actions={actions} row={row} />
                       </View>
                     )}
                   </View>
