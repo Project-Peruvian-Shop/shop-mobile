@@ -21,6 +21,7 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     alignContent: "stretch",
+    height: 56,
   },
   cell: {
     width: 200,
