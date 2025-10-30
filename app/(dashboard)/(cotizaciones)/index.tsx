@@ -91,34 +91,23 @@ export default function Cotizaciones() {
   ];
 
   return (
-    <View style={{ paddingHorizontal: 12, paddingVertical: 20 }}>
+    <View style={{ flex: 1, paddingHorizontal: 12, paddingVertical: 20 }}>
       <Text
         style={{
           fontSize: 18,
           fontWeight: "bold",
           textAlign: "center",
-          marginBottom: 16,
+          marginBottom: 20,
         }}
       >
         Cotizaciones
       </Text>
 
-      <View
-        style={{
-          flex: 1,
-          alignItems: "center",
-          marginVertical: 10,
-        }}
-      >
-        <SearchBar
-          placeholder="Buscar cotizaciones..."
-          value=""
-          onChangeText={() => {}}
-          results={[]}
-          onSelectResult={() => {}}
-          loading={false}
-        />
-      </View>
+      <SearchBar
+        placeholder="Buscar cotizaciones..."
+        value=""
+        onChangeText={() => {}}
+      />
 
       {loading ? (
         <Text>Cargando...</Text>
