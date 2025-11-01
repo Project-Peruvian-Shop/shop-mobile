@@ -57,7 +57,6 @@ export default function Login() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "#f5f6f8",
     padding: 24,
     justifyContent: "center",
@@ -83,7 +82,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     paddingVertical: 14,
     alignItems: "center",
-    marginTop: 10,
+    marginTop: 20,
   },
   buttonText: {
     color: COLORS.WHITE,
