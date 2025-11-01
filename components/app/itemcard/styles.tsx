@@ -1,3 +1,4 @@
+import { COLORS } from "@/utils/colors";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
@@ -19,11 +20,11 @@ export const styles = StyleSheet.create({
   },
   imageContainer: {
     alignItems: "center",
-    marginBottom: 24,
+    marginBottom: 16,
   },
   image: {
-    width: 180,
-    height: 180,
+    width: 120,
+    height: 120,
     borderRadius: 16,
     resizeMode: "cover",
   },
@@ -32,39 +33,23 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "600",
     color: "#111827",
-    marginBottom: 16,
+    marginBottom: 12,
   },
-  pricingContainer: {
-    marginBottom: 24,
-  },
-  priceRow: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "baseline",
-    gap: 8,
-  },
-  currentPrice: {
-    fontSize: 28,
-    fontWeight: "bold",
-    color: "#111827",
-  },
-  previousPrice: {
-    fontSize: 16,
-    textDecorationLine: "line-through",
-    color: "#9ca3af",
-  },
-  button: {
+  bottomRow: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#2563eb",
-    borderRadius: 10,
-    paddingVertical: 12,
-    gap: 8,
+    justifyContent: "space-between",
   },
-  buttonText: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "500",
+  category: {
+    flex: 1,
+    fontSize: 13,
+    color: "#6b7280",
+    lineHeight: 18,
+    marginRight: 10,
+  },
+  cartButton: {
+    backgroundColor: COLORS.PRIMARY,
+    padding: 10,
+    borderRadius: 10,
   },
 });
