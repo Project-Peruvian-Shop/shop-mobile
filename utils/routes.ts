@@ -11,6 +11,11 @@ export const ROUTES = {
       PATH: "(tabs)/index" as const,
       ENTIRE_PATH: "/(app)/(tabs)/index" as const,
     },
+    PRODUCTS: {
+      NAME: "Productos",
+      PATH: "(tabs)/products" as const,
+      ENTIRE_PATH: "/(app)/(tabs)/products" as const,
+    },
     CART: {
       NAME: "Carrito",
       PATH: "(tabs)/cart" as const,
