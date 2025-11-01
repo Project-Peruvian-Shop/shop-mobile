@@ -1,4 +1,5 @@
 import { HomeCard } from "@/components/app/card/card";
+import { Title } from "@/components/app/title/title";
 import React from "react";
 import { Image, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -50,19 +51,9 @@ export default function Index() {
         </View>
 
         {/* Especialidades */}
-        <View style={{ padding: 20 }}>
-          <Text
-            style={{
-              fontSize: 18,
-              fontWeight: "700",
-              textAlign: "center",
-              marginBottom: 16,
-              color: "#0f1828",
-            }}
-          >
-            ESPECIALIDADES
-          </Text>
+        <Title title="ESPECIALIDADES" />
 
+        <View style={{ padding: 20 }}>
           <View
             style={{
               flexDirection: "row",
@@ -75,10 +66,6 @@ export default function Index() {
               icon={require("@/assets/images/logo.png")}
             />
             <HomeCard
-              title="Asesoramiento técnico"
-              icon={require("@/assets/images/logo.png")}
-            />
-            <HomeCard
               title="Preguntas frecuentes"
               icon={require("@/assets/images/logo.png")}
             />
@@ -86,19 +73,9 @@ export default function Index() {
         </View>
 
         {/* Productos */}
-        <View style={{ backgroundColor: "#0f1828", paddingVertical: 20 }}>
-          <Text
-            style={{
-              fontSize: 18,
-              fontWeight: "700",
-              textAlign: "center",
-              marginBottom: 16,
-              color: "#fff",
-            }}
-          >
-            PRODUCTOS
-          </Text>
+        <Title title="PRODUCTOS" />
 
+        <View style={{ paddingVertical: 20 }}>
           <View
             style={{
               flexDirection: "row",
@@ -108,7 +85,7 @@ export default function Index() {
             }}
           >
             <HomeCard
-              title="Acanalado"
+              title="Alcantarillado"
               icon={require("@/assets/images/logo.png")}
             />
             <HomeCard
