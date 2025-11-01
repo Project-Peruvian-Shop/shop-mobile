@@ -1,18 +1,12 @@
 import ItemCard from "@/components/app/itemcard/itemcard";
 import { Pagination } from "@/components/app/pagination/pagination";
 import { SearchBar } from "@/components/dashboard/search/search";
+import { Loader } from "@/components/global/loader/loader";
 import { PaginatedProductoResponseDTO } from "@/models/Producto/Producto_response_dto";
 import { PaginatedResponse } from "@/services/global.interfaces";
 import { getPaginatedProductos } from "@/services/producto.service";
 import React, { useEffect, useState } from "react";
-import {
-  ActivityIndicator,
-  Dimensions,
-  FlatList,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Dimensions, FlatList, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Products() {
@@ -53,13 +47,7 @@ export default function Products() {
         />
       </View>
 
-      {loading && (
-        <ActivityIndicator
-          size="large"
-          color="#000"
-          style={{ marginTop: 20 }}
-        />
-      )}
+      {loading && <Loader message="Cargando productos..." />}
 
       {!loading && productos?.content && (
         <FlatList

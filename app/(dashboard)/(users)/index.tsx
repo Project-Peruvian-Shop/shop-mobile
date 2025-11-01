@@ -5,6 +5,7 @@ import {
   Column,
   DashboardTable,
 } from "@/components/dashboard/table/table";
+import { Loader } from "@/components/global/loader/loader";
 import { UsuarioDashboardDTO } from "@/models/Usuario/Usuario_response_dto";
 import { PaginatedResponse } from "@/services/global.interfaces";
 import { getAllUsuarios } from "@/services/usuario.service";
@@ -92,7 +93,7 @@ export default function Users() {
       />
 
       {loading ? (
-        <Text>Cargando...</Text>
+        <Loader message="Cargando usuarios..." />
       ) : (
         <DashboardTable<UsuarioDashboardDTO>
           columns={columns}

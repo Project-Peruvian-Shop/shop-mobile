@@ -4,6 +4,7 @@ import {
   Column,
   DashboardTable,
 } from "@/components/dashboard/table/table";
+import { Loader } from "@/components/global/loader/loader";
 import { CategoriaDashboardDTO } from "@/models/Categoria/Categoria_response";
 import { getAllCategories } from "@/services/categoria.service";
 import { PaginatedResponse } from "@/services/global.interfaces";
@@ -81,7 +82,7 @@ export default function Categories() {
       />
 
       {loading ? (
-        <Text>Cargando...</Text>
+        <Loader message="Cargando categorías..." />
       ) : (
         <DashboardTable<CategoriaDashboardDTO>
           columns={columns}

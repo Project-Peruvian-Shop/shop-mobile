@@ -5,6 +5,7 @@ import {
   Column,
   DashboardTable,
 } from "@/components/dashboard/table/table";
+import { Loader } from "@/components/global/loader/loader";
 import { CotizacionDashboardDTO } from "@/models/Cotizacion/Cotizacion_response_dto";
 import { getAllCotizaciones } from "@/services/cotizacion.service";
 import { PaginatedResponse } from "@/services/global.interfaces";
@@ -110,7 +111,7 @@ export default function Cotizaciones() {
       />
 
       {loading ? (
-        <Text>Cargando...</Text>
+        <Loader message="Cargando cotizaciones..." />
       ) : (
         <DashboardTable<CotizacionDashboardDTO>
           columns={columns}

@@ -4,6 +4,7 @@ import {
   Column,
   DashboardTable,
 } from "@/components/dashboard/table/table";
+import { Loader } from "@/components/global/loader/loader";
 import { PaginatedProductoResponseDTO } from "@/models/Producto/Producto_response_dto";
 import { PaginatedResponse } from "@/services/global.interfaces";
 import { getPaginatedProductos } from "@/services/producto.service";
@@ -100,7 +101,7 @@ export default function Products() {
       />
 
       {loading ? (
-        <Text>Cargando...</Text>
+        <Loader message="Cargando productos..." />
       ) : (
         <DashboardTable<PaginatedProductoResponseDTO>
           columns={columns}

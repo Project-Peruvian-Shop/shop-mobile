@@ -5,6 +5,7 @@ import {
   Column,
   DashboardTable,
 } from "@/components/dashboard/table/table";
+import { Loader } from "@/components/global/loader/loader";
 import { MensajeDashboardDTO } from "@/models/Mensaje/Mensaje_response_dto";
 import { PaginatedResponse } from "@/services/global.interfaces";
 import { getAllMensajes } from "@/services/mensajes.service";
@@ -103,7 +104,7 @@ export default function Messages() {
       />
 
       {loading ? (
-        <Text>Cargando...</Text>
+        <Loader message="Cargando mensajes..." />
       ) : (
         <DashboardTable<MensajeDashboardDTO>
           columns={columns}
