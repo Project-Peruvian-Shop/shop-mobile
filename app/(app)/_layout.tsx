@@ -36,6 +36,20 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
+        name={ROUTES.TABS.PRODUCTS.PATH}
+        options={{
+          title: ROUTES.TABS.PRODUCTS.NAME,
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? "pricetag-sharp" : "pricetag-outline"}
+              color={color}
+              size={24}
+            />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
         name={ROUTES.TABS.CART.PATH}
         options={{
           title: ROUTES.TABS.CART.NAME,
