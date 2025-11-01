@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     padding: 20,
     shadowColor: COLORS.BLACK,
     shadowOpacity: 0.1,
-    shadowRadius: 6,
+    shadowRadius: 3,
     elevation: 4,
   },
   imageContainer: {

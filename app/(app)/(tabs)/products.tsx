@@ -82,17 +82,16 @@ export default function Products() {
 const styles = StyleSheet.create({
   title: {
     paddingTop: 16,
-    paddingHorizontal: 16,
+    paddingHorizontal: 12,
     fontSize: 24,
     fontWeight: "bold",
   },
   searchContainer: {
-    marginHorizontal: 16,
-    marginBottom: 8,
+    marginHorizontal: 12,
   },
   listContainer: {
-    paddingHorizontal: 16,
-    paddingBottom: 16,
+    paddingTop: 8,
+    paddingHorizontal: 12,
   },
   row: {
     justifyContent: "space-between",
