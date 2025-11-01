@@ -7,7 +7,9 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function Register() {
   const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -23,10 +25,21 @@ export default function Register() {
 
       <CustomInput placeholder="Nombre" value={name} onChangeText={setName} />
       <CustomInput
+        placeholder="Apellido"
+        value={lastName}
+        onChangeText={setLastName}
+      />
+      <CustomInput
         placeholder="Correo electrónico"
         value={email}
         onChangeText={setEmail}
         keyboardType="email-address"
+      />
+      <CustomInput
+        placeholder="Teléfono"
+        value={phone}
+        onChangeText={setPhone}
+        keyboardType="phone-pad"
       />
       <CustomInput
         placeholder="Contraseña"
