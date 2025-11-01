@@ -1,6 +1,7 @@
 import { CustomInput } from "@/components/login/input/input";
 import { COLORS } from "@/utils/colors";
 import { ROUTES } from "@/utils/routes";
+import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -13,6 +14,12 @@ export default function Login() {
 
   return (
     <View style={styles.container}>
+      <Image
+        source={require("@/assets/images/logo.png")}
+        style={styles.logo}
+        contentFit="contain"
+      />
+
       <Text style={styles.title}>Inicia Sesión</Text>
       <Text style={styles.subtitle}>
         Ingresa tu correo electrónico y contraseña para acceder a tu cuenta de
@@ -54,6 +61,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#f5f6f8",
     padding: 24,
     justifyContent: "center",
+  },
+  logo: {
+    width: 200,
+    height: 200,
+    alignSelf: "center",
   },
   title: {
     fontSize: 28,

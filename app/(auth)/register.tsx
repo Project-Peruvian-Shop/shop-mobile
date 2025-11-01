@@ -1,6 +1,7 @@
 import { CustomInput } from "@/components/login/input/input";
 import { COLORS } from "@/utils/colors";
 import { ROUTES } from "@/utils/routes";
+import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -17,6 +18,12 @@ export default function Register() {
 
   return (
     <View style={styles.container}>
+      <Image
+        source={require("@/assets/images/logo.png")}
+        style={styles.logo}
+        contentFit="contain"
+      />
+
       <Text style={styles.title}>Crea una cuenta</Text>
       <Text style={styles.subtitle}>
         Crea una nueva cuenta para comenzar y disfrutar de un acceso sin
@@ -76,6 +83,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#f5f6f8",
     padding: 24,
     justifyContent: "center",
+  },
+  logo: {
+    width: 160,
+    height: 160,
+    alignSelf: "center",
   },
   title: {
     fontSize: 28,
