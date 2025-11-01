@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     gap: 8,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 16,
+    marginVertical: 8,
   },
   button: {
     backgroundColor: COLORS.LIGHTGRAY,
