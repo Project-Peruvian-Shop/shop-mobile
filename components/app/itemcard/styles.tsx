@@ -5,15 +5,14 @@ export const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
-    padding: 16,
   },
   card: {
     width: "100%",
     maxWidth: 340,
-    backgroundColor: "#fff",
+    backgroundColor: COLORS.WHITE,
     borderRadius: 20,
     padding: 20,
-    shadowColor: "#000",
+    shadowColor: COLORS.BLACK,
     shadowOpacity: 0.1,
     shadowRadius: 6,
     elevation: 4,
@@ -30,9 +29,9 @@ export const styles = StyleSheet.create({
   },
   name: {
     textAlign: "center",
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "600",
-    color: "#111827",
+    color: COLORS.SECONDARY,
     marginBottom: 12,
   },
   bottomRow: {
@@ -42,9 +41,8 @@ export const styles = StyleSheet.create({
   },
   category: {
     flex: 1,
-    fontSize: 13,
-    color: "#6b7280",
-    lineHeight: 18,
+    fontSize: 10,
+    color: COLORS.GRAY,
     marginRight: 10,
   },
   cartButton: {

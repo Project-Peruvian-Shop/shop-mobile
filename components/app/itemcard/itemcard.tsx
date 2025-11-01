@@ -27,17 +27,17 @@ export default function ItemCard({ product, onAddToCart }: ItemCardProps) {
         </View>
 
         {/* Título centrado */}
-        <Text style={styles.name} numberOfLines={2}>
+        <Text style={styles.name} numberOfLines={3}>
           {product.nombre}
         </Text>
 
         {/* Categoría + Botón de carrito */}
         <View style={styles.bottomRow}>
-          <Text style={styles.category} numberOfLines={2}>
+          <Text style={styles.category} numberOfLines={3}>
             {product.categoriaNombre}
           </Text>
           <TouchableOpacity style={styles.cartButton} onPress={onAddToCart}>
-            <FontAwesome6 name="cart-plus" size={20} color={COLORS.WHITE} />
+            <FontAwesome6 name="cart-plus" size={16} color={COLORS.WHITE} />
           </TouchableOpacity>
         </View>
       </View>
