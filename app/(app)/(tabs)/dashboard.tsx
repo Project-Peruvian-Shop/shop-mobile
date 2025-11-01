@@ -7,7 +7,7 @@ export default function Dashboard() {
   const router = useRouter();
 
   return (
-    <SafeAreaView>
+    <SafeAreaView edges={["top", "left", "right"]}>
       <View>
         <Text>Dashboard Screen</Text>
 

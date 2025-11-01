@@ -3,7 +3,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Profile() {
   return (
-    <SafeAreaView>
+    <SafeAreaView edges={["top", "left", "right"]}>
       <View>
         <Text>Profile screen</Text>
       </View>

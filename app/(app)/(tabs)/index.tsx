@@ -6,8 +6,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#f5f6f8" }}>
-      <ScrollView style={{ flex: 1, backgroundColor: "#f5f6f8" }}>
+    <SafeAreaView
+      style={{ flex: 1, backgroundColor: "#f5f6f8" }}
+      edges={["top", "left", "right"]}
+    >
+      <ScrollView>
         {/* Hero section */}
         <View style={{ position: "relative" }}>
           <Image
