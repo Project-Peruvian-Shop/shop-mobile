@@ -2,6 +2,7 @@ export const ROUTES = {
   GROUPS: {
     APP: "(app)" as const,
     DASHBOARD: "(dashboard)" as const,
+    AUTH: "(auth)" as const,
   },
 
   TABS: {
@@ -97,6 +98,19 @@ export const ROUTES = {
         PATH: "(dashboard)/(messages)/[id]" as const,
         GO: (id: number) => `/(dashboard)/(messages)/${id}` as const,
       },
+    },
+  },
+
+  AUTH: {
+    LOGIN: {
+      NAME: "Login",
+      PATH: "(auth)/login" as const,
+      ENTIRE_PATH: "/(auth)/login" as const,
+    },
+    REGISTER: {
+      NAME: "Register",
+      PATH: "(auth)/register" as const,
+      ENTIRE_PATH: "/(auth)/register" as const,
     },
   },
 } as const;

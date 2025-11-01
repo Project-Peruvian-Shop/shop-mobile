@@ -15,6 +15,16 @@ export default function Dashboard() {
           title="Ir a Principal"
           onPress={() => router.push(ROUTES.DASHBOARD.PRINCIPAL.ENTIRE_PATH)}
         />
+
+        <Button
+          title="Ir a Login"
+          onPress={() => router.push(ROUTES.AUTH.LOGIN.ENTIRE_PATH)}
+        />
+
+        <Button
+          title="Ir a Register"
+          onPress={() => router.push(ROUTES.AUTH.REGISTER.ENTIRE_PATH)}
+        />
       </View>
     </SafeAreaView>
   );
