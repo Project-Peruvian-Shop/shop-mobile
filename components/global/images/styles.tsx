@@ -30,6 +30,12 @@ export const modalStyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  gestureRoot: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+  },
   closeButton: {
     position: "absolute",
     top: 40,
@@ -39,14 +45,8 @@ export const modalStyles = StyleSheet.create({
     borderRadius: 30,
     padding: 6,
   },
-  scrollContent: {
-    flexGrow: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
   zoomImage: {
-    width: "100%",
-    height: undefined,
-    aspectRatio: 1,
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height * 0.7,
   },
 });

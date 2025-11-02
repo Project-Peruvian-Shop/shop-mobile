@@ -1,13 +1,17 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import React, { useState } from "react";
+import { Modal, Pressable, TouchableOpacity, View } from "react-native";
 import {
-  Modal,
-  Pressable,
-  ScrollView,
-  TouchableOpacity,
-  View,
-} from "react-native";
+  Gesture,
+  GestureDetector,
+  GestureHandlerRootView,
+} from "react-native-gesture-handler";
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 import { modalStyles, styles } from "./styles";
 
 interface ImageViewerProps {
@@ -17,11 +21,62 @@ interface ImageViewerProps {
 
 export function ImageViewer({ uri, variant = "product" }: ImageViewerProps) {
   const [visible, setVisible] = useState(false);
-
   const imageSource = uri || require("@/assets/images/logo.png");
-
   const imageStyle =
     variant === "product" ? styles.productImage : styles.categoryFullImage;
+
+  // --- valores animados para zoom y pan ---
+  const scale = useSharedValue(1);
+  const savedScale = useSharedValue(1);
+  const translateX = useSharedValue(0);
+  const translateY = useSharedValue(0);
+  const savedTranslate = { x: 0, y: 0 };
+
+  // Gestos
+  const pinch = Gesture.Pinch()
+    .onUpdate((e) => {
+      scale.value = savedScale.value * e.scale;
+    })
+    .onEnd(() => {
+      savedScale.value = scale.value;
+    });
+
+  const pan = Gesture.Pan()
+    .onUpdate((e) => {
+      translateX.value = savedTranslate.x + e.translationX;
+      translateY.value = savedTranslate.y + e.translationY;
+    })
+    .onEnd(() => {
+      savedTranslate.x = translateX.value;
+      savedTranslate.y = translateY.value;
+    });
+
+  const doubleTap = Gesture.Tap()
+    .numberOfTaps(2)
+    .onEnd(() => {
+      scale.value = withTiming(scale.value > 1 ? 1 : 2);
+    });
+
+  const composed = Gesture.Simultaneous(pinch, pan, doubleTap);
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [
+      { scale: scale.value },
+      { translateX: translateX.value },
+      { translateY: translateY.value },
+    ],
+  }));
+
+  // Cuando se cierra el modal, resetea el zoom
+  const closeModal = () => {
+    setVisible(false);
+    scale.value = 1;
+    savedScale.value = 1;
+    translateX.value = 0;
+    translateY.value = 0;
+    savedTranslate.x = 0;
+    savedTranslate.y = 0;
+  };
 
   return (
     <>
@@ -42,39 +97,31 @@ export function ImageViewer({ uri, variant = "product" }: ImageViewerProps) {
         />
       </TouchableOpacity>
 
-      {/* Modal con zoom */}
+      {/* Modal con zoom por gestos */}
       <Modal
         visible={visible}
         transparent
         animationType="fade"
-        onRequestClose={() => setVisible(false)}
+        onRequestClose={closeModal}
       >
         <View style={modalStyles.overlay}>
           {/* Botón de cierre */}
-          <Pressable
-            onPress={() => setVisible(false)}
-            style={modalStyles.closeButton}
-          >
+          <Pressable onPress={closeModal} style={modalStyles.closeButton}>
             <Ionicons name="close" size={28} color="#fff" />
           </Pressable>
 
-          {/* Imagen con zoom */}
-          <ScrollView
-            contentContainerStyle={modalStyles.scrollContent}
-            maximumZoomScale={5}
-            minimumZoomScale={1}
-            showsHorizontalScrollIndicator={false}
-            showsVerticalScrollIndicator={false}
-            bouncesZoom
-            centerContent
-          >
-            <Image
-              source={{ uri: imageSource }}
-              style={modalStyles.zoomImage}
-              contentFit="contain"
-              transition={300}
-            />
-          </ScrollView>
+          <GestureHandlerRootView style={modalStyles.gestureRoot}>
+            <GestureDetector gesture={composed}>
+              <Animated.View style={animatedStyle}>
+                <Image
+                  source={{ uri: imageSource }}
+                  style={modalStyles.zoomImage}
+                  contentFit="contain"
+                  transition={300}
+                />
+              </Animated.View>
+            </GestureDetector>
+          </GestureHandlerRootView>
         </View>
       </Modal>
     </>
