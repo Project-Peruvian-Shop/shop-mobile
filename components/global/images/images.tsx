@@ -25,14 +25,15 @@ export function ImageViewer({ uri, variant = "product" }: ImageViewerProps) {
   const imageStyle =
     variant === "product" ? styles.productImage : styles.categoryFullImage;
 
-  // --- valores animados para zoom y pan ---
+  // --- valores animados ---
   const scale = useSharedValue(1);
   const savedScale = useSharedValue(1);
   const translateX = useSharedValue(0);
   const translateY = useSharedValue(0);
-  const savedTranslate = { x: 0, y: 0 };
+  const savedTranslateX = useSharedValue(0);
+  const savedTranslateY = useSharedValue(0);
 
-  // Gestos
+  // --- Gestos ---
   const pinch = Gesture.Pinch()
     .onUpdate((e) => {
       scale.value = savedScale.value * e.scale;
@@ -43,12 +44,12 @@ export function ImageViewer({ uri, variant = "product" }: ImageViewerProps) {
 
   const pan = Gesture.Pan()
     .onUpdate((e) => {
-      translateX.value = savedTranslate.x + e.translationX;
-      translateY.value = savedTranslate.y + e.translationY;
+      translateX.value = savedTranslateX.value + e.translationX;
+      translateY.value = savedTranslateY.value + e.translationY;
     })
     .onEnd(() => {
-      savedTranslate.x = translateX.value;
-      savedTranslate.y = translateY.value;
+      savedTranslateX.value = translateX.value;
+      savedTranslateY.value = translateY.value;
     });
 
   const doubleTap = Gesture.Tap()
@@ -67,20 +68,18 @@ export function ImageViewer({ uri, variant = "product" }: ImageViewerProps) {
     ],
   }));
 
-  // Cuando se cierra el modal, resetea el zoom
   const closeModal = () => {
     setVisible(false);
     scale.value = 1;
     savedScale.value = 1;
     translateX.value = 0;
     translateY.value = 0;
-    savedTranslate.x = 0;
-    savedTranslate.y = 0;
+    savedTranslateX.value = 0;
+    savedTranslateY.value = 0;
   };
 
   return (
     <>
-      {/* Imagen principal */}
       <TouchableOpacity
         onPress={() => setVisible(true)}
         activeOpacity={0.9}
@@ -97,7 +96,6 @@ export function ImageViewer({ uri, variant = "product" }: ImageViewerProps) {
         />
       </TouchableOpacity>
 
-      {/* Modal con zoom por gestos */}
       <Modal
         visible={visible}
         transparent
@@ -105,7 +103,6 @@ export function ImageViewer({ uri, variant = "product" }: ImageViewerProps) {
         onRequestClose={closeModal}
       >
         <View style={modalStyles.overlay}>
-          {/* Botón de cierre */}
           <Pressable onPress={closeModal} style={modalStyles.closeButton}>
             <Ionicons name="close" size={28} color="#fff" />
           </Pressable>
