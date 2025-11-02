@@ -1,5 +1,6 @@
 import ItemCard from "@/components/app/itemcard/itemcard";
 import { Pagination } from "@/components/app/pagination/pagination";
+import { TitlePage } from "@/components/app/titlepage/titlepage";
 import { SearchBar } from "@/components/dashboard/search/search";
 import { Loader } from "@/components/global/loader/loader";
 import { PaginatedProductoResponseDTO } from "@/models/Producto/Producto_response_dto";
@@ -37,7 +38,7 @@ export default function Products() {
 
   return (
     <SafeAreaView edges={["top", "left", "right"]} style={{ flex: 1 }}>
-      <Text style={styles.title}>Productos</Text>
+      <TitlePage title="Productos" />
 
       <View style={styles.searchContainer}>
         <SearchBar
@@ -80,12 +81,6 @@ export default function Products() {
 }
 
 const styles = StyleSheet.create({
-  title: {
-    paddingTop: 16,
-    paddingHorizontal: 12,
-    fontSize: 24,
-    fontWeight: "bold",
-  },
   searchContainer: {
     marginHorizontal: 12,
   },
