@@ -1,6 +1,6 @@
 import { COLORS } from "@/utils/colors";
 import { Ionicons } from "@expo/vector-icons";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Modal,
   Pressable,
@@ -35,8 +35,13 @@ export function QuantityModal({
 
   const handleAdd = () => {
     onConfirm(quantity);
+    setQuantity(1);
     onClose();
   };
+
+  useEffect(() => {
+    if (visible) setQuantity(1);
+  }, [visible]);
 
   return (
     <Modal visible={visible} transparent animationType="fade">
