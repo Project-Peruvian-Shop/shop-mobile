@@ -68,14 +68,18 @@ export default function Products() {
           ListEmptyComponent={
             <Text style={styles.emptyText}>No se encontraron productos</Text>
           }
+          ListFooterComponent={
+            <View style={styles.footerContainer}>
+              <Pagination
+                currentPage={page}
+                totalPages={totalPages}
+                onPageChange={setPage}
+              />
+            </View>
+          }
+          ListFooterComponentStyle={{ marginTop: 20, marginBottom: 40 }}
         />
       )}
-
-      <Pagination
-        currentPage={page}
-        totalPages={totalPages}
-        onPageChange={setPage}
-      />
     </SafeAreaView>
   );
 }
@@ -98,5 +102,9 @@ const styles = StyleSheet.create({
     marginTop: 40,
     fontSize: 16,
     color: "#888",
+  },
+  footerContainer: {
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
