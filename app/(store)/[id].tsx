@@ -1,4 +1,5 @@
 import { TitlePage } from "@/components/app/titlepage/titlepage";
+import { ImageViewer } from "@/components/global/images/images";
 import { Loader } from "@/components/global/loader/loader";
 import { ProductoDTO } from "@/models/Producto/Producto_response_dto";
 import { getProductoById } from "@/services/producto.service";
@@ -20,7 +21,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function DetailProduct() {
   const { id } = useLocalSearchParams();
-
   const [producto, setProducto] = useState<ProductoDTO | null>(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
@@ -53,7 +53,6 @@ export default function DetailProduct() {
           <ScrollView contentContainerStyle={styles.scroll}>
             {/* Imagen principal con fondo de categoría */}
             <View style={styles.imageContainer}>
-              {/* Imagen grande de categoría (de fondo con opacidad) */}
               {producto.categoriaEnlace && (
                 <Image
                   source={{ uri: producto.categoriaEnlace }}
@@ -65,15 +64,7 @@ export default function DetailProduct() {
               )}
 
               {/* Imagen del producto */}
-              <Image
-                source={{
-                  uri:
-                    producto.productoEnlace || "https://placehold.co/600x600",
-                }}
-                style={styles.productImage}
-                contentFit="contain"
-                transition={500}
-              />
+              <ImageViewer uri={producto.productoEnlace} variant="product" />
             </View>
 
             {/* Contenido */}
@@ -91,14 +82,10 @@ export default function DetailProduct() {
 
               {/* Imagen + Nombre de categoría */}
               <View style={styles.categoryInfo}>
-                {producto.categoriaEnlace && (
-                  <Image
-                    source={{ uri: producto.categoriaEnlace }}
-                    style={styles.categoryFullImage}
-                    contentFit="contain"
-                    transition={500}
-                  />
-                )}
+                <ImageViewer
+                  uri={producto.categoriaEnlace}
+                  variant="category"
+                />
                 <Text style={styles.categoryFullName}>
                   {producto.categoriaNombre}
                 </Text>
@@ -133,20 +120,6 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.WHITE,
     marginBottom: 20,
   },
-  header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: "#f1f5f9",
-  },
-  headerTitle: {
-    fontSize: 14,
-    color: "#64748b",
-    fontWeight: "500",
-  },
   scroll: {
     paddingBottom: 80,
   },
@@ -164,10 +137,6 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     opacity: 0.25,
-  },
-  productImage: {
-    width: "70%",
-    height: "70%",
   },
   content: {
     paddingHorizontal: 20,
@@ -203,13 +172,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 20,
-  },
-  categoryFullImage: {
-    width: screenWidth,
-    height: undefined,
-    aspectRatio: 16 / 9,
-    resizeMode: "contain",
-    marginBottom: 10,
   },
   categoryFullName: {
     fontSize: 16,
