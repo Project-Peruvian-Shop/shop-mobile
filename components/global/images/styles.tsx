@@ -22,3 +22,34 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
   },
 });
+
+export const modalStyles = StyleSheet.create({
+  overlay: {
+    flex: 1,
+    backgroundColor: "rgba(0,0,0,0.95)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  pressableBackground: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  closeButton: {
+    position: "absolute",
+    top: 40,
+    right: 20,
+    zIndex: 10,
+    backgroundColor: "rgba(0,0,0,0.5)",
+    borderRadius: 30,
+    padding: 6,
+  },
+  scrollContent: {
+    flexGrow: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  zoomImage: {
+    width: "100%",
+    height: undefined,
+    aspectRatio: 1,
+  },
+});
