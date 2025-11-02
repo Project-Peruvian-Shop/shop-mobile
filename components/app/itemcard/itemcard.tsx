@@ -1,8 +1,9 @@
 import { PaginatedProductoResponseDTO } from "@/models/Producto/Producto_response_dto";
 import { COLORS } from "@/utils/colors";
 import { FontAwesome6 } from "@expo/vector-icons";
+import { Image } from "expo-image";
 import React from "react";
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles";
 
 interface ItemCardProps {
@@ -23,6 +24,9 @@ export default function ItemCard({ product, onAddToCart }: ItemCardProps) {
                 : require("@/assets/images/logo.png")
             }
             style={styles.image}
+            contentFit="cover"
+            transition={500}
+            placeholder="blur"
           />
         </View>
 
