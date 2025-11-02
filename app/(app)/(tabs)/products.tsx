@@ -83,6 +83,7 @@ export default function Products() {
 const styles = StyleSheet.create({
   searchContainer: {
     marginHorizontal: 12,
+    marginBottom: 12,
   },
   listContainer: {
     paddingTop: 8,

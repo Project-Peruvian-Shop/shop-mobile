@@ -4,7 +4,6 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     position: "relative",
-    marginVertical: 12,
     width: "100%",
   },
   wrapper: {
