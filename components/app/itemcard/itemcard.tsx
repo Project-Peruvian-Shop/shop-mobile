@@ -24,7 +24,7 @@ export default function ItemCard({ product, onAddToCart }: ItemCardProps) {
                 : require("@/assets/images/logo.png")
             }
             style={styles.image}
-            contentFit="cover"
+            contentFit="contain"
             transition={500}
             placeholder="blur"
           />

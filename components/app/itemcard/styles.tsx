@@ -19,12 +19,15 @@ export const styles = StyleSheet.create({
   },
   imageContainer: {
     alignItems: "center",
+    justifyContent: "center",
     marginBottom: 16,
+    width: "100%",
+    height: 150,
+    overflow: "hidden",
   },
   image: {
     width: "100%",
-    height: 150,
-    resizeMode: "cover",
+    height: "100%",
   },
   name: {
     textAlign: "center",
