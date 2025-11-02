@@ -78,12 +78,12 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name={ROUTES.TABS.PROFILE.PATH}
+        name={ROUTES.TABS.MORE.PATH}
         options={{
-          title: ROUTES.TABS.PROFILE.NAME,
+          title: ROUTES.TABS.MORE.NAME,
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
-              name={focused ? "person-sharp" : "person-outline"}
+              name={focused ? "menu-sharp" : "menu-outline"}
               color={color}
               size={24}
             />

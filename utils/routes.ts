@@ -26,10 +26,10 @@ export const ROUTES = {
       PATH: "(tabs)/dashboard" as const,
       ENTIRE_PATH: "/(app)/(tabs)/dashboard" as const,
     },
-    PROFILE: {
-      NAME: "Perfil",
-      PATH: "(tabs)/profile" as const,
-      ENTIRE_PATH: "/(app)/(tabs)/profile" as const,
+    MORE: {
+      NAME: "Más",
+      PATH: "(tabs)/more" as const,
+      ENTIRE_PATH: "/(app)/(tabs)/more" as const,
     },
   },
 

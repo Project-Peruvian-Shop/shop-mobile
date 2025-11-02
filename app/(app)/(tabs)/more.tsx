@@ -4,7 +4,7 @@ import { useRouter } from "expo-router";
 import { Button } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function Profile() {
+export default function More() {
   const router = useRouter();
 
   return (
