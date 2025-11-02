@@ -1,23 +1,33 @@
+import { QuantityModal } from "@/components/app/quantity/quantity";
 import { PaginatedProductoResponseDTO } from "@/models/Producto/Producto_response_dto";
 import { COLORS } from "@/utils/colors";
 import { ROUTES } from "@/utils/routes";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
-import React from "react";
+import React, { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles";
 
 interface ItemCardProps {
   product: PaginatedProductoResponseDTO;
-  onAddToCart?: () => void;
+  onAddToCart?: (
+    product: PaginatedProductoResponseDTO,
+    quantity: number
+  ) => void;
 }
 
 export default function ItemCard({ product, onAddToCart }: ItemCardProps) {
   const router = useRouter();
+  const [showModal, setShowModal] = useState(false);
 
   const goToDetail = () => {
     router.push(ROUTES.STORE.DETAILPRODUCT.GO(product.id));
+  };
+
+  const handleConfirm = (quantity: number) => {
+    onAddToCart?.(product, quantity);
+    setShowModal(false);
   };
 
   return (
@@ -58,13 +68,20 @@ export default function ItemCard({ product, onAddToCart }: ItemCardProps) {
             style={styles.cartButton}
             onPress={(e) => {
               e.stopPropagation();
-              onAddToCart?.();
+              setShowModal(true);
             }}
           >
             <FontAwesome6 name="cart-plus" size={16} color={COLORS.WHITE} />
           </TouchableOpacity>
         </View>
       </TouchableOpacity>
+
+      {/* Modal de cantidad */}
+      <QuantityModal
+        visible={showModal}
+        onClose={() => setShowModal(false)}
+        onConfirm={handleConfirm}
+      />
     </View>
   );
 }
