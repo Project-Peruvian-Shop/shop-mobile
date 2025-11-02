@@ -95,7 +95,7 @@ export default function DetailProduct() {
                   <Image
                     source={{ uri: producto.categoriaEnlace }}
                     style={styles.categoryFullImage}
-                    contentFit="cover"
+                    contentFit="contain"
                     transition={500}
                   />
                 )}
@@ -125,7 +125,7 @@ export default function DetailProduct() {
   );
 }
 
-const screenWidth = Dimensions.get("window").width;
+const screenWidth = Dimensions.get("window").width - 20;
 
 const styles = StyleSheet.create({
   container: {
@@ -205,9 +205,10 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   categoryFullImage: {
-    width: "100%",
-    height: 180,
-    borderRadius: 12,
+    width: screenWidth,
+    height: undefined,
+    aspectRatio: 16 / 9,
+    resizeMode: "contain",
     marginBottom: 10,
   },
   categoryFullName: {
