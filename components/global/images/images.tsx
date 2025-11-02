@@ -9,7 +9,7 @@ interface ImageViewerProps {
 }
 
 export function ImageViewer({ uri, variant = "product" }: ImageViewerProps) {
-  const imageSource = uri || "https://placehold.co/600x600";
+  const imageSource = uri || require("@/assets/images/logo.png");
 
   const imageStyle =
     variant === "product" ? styles.productImage : styles.categoryFullImage;

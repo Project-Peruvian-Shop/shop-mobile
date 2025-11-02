@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   },
   productImage: {
     width: "70%",
-    height: screenWidth * 0.7,
+    aspectRatio: 1,
   },
   categoryContainer: {
     width: "100%",
