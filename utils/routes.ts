@@ -173,13 +173,13 @@ export const ROUTES = {
   STORE: {
     COTIZACION: {
       NAME: "Crear Cotización",
-      PATH: "(store)/(cotizaciones)/create" as const,
-      ENTIRE_PATH: "/(store)/(cotizaciones)/create" as const,
+      PATH: "(store)/create" as const,
+      ENTIRE_PATH: "/(store)/create" as const,
     },
     DETAILPRODUCT: {
       NAME: "Detalle de Producto",
-      PATH: "(store)/(products)/[id]" as const,
-      GO: (id: number) => `/(store)/(products)/${id}` as const,
+      PATH: "(store)/[id]" as const,
+      GO: (id: number) => `/(store)/${id}` as const,
     },
   },
 } as const;
