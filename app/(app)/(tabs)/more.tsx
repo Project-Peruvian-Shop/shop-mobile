@@ -66,6 +66,13 @@ export default function More() {
           router.push(ROUTES.LANDING.PRIVACY.ENTIRE_PATH);
         }}
       />
+
+      <Button
+        title="Cerrar sesión"
+        onPress={() => {
+          console.log("Cerrar sesión");
+        }}
+      />
     </SafeAreaView>
   );
 }
