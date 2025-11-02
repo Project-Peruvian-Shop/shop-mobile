@@ -151,4 +151,22 @@ export const ROUTES = {
       ENTIRE_PATH: "/(landing)/terms" as const,
     },
   },
+
+  PROFILE: {
+    COTIZACIONDETAIL: {
+      NAME: "Detalle de Cotización",
+      PATH: "(profile)/(cotizaciones)/[id]" as const,
+      GO: (id: number) => `/(profile)/(cotizaciones)/${id}` as const,
+    },
+    COTIZACIONES: {
+      NAME: "Mis Cotizaciones",
+      PATH: "(profile)/cotizaciones" as const,
+      ENTIRE_PATH: "/(profile)/cotizaciones" as const,
+    },
+    PROFILE: {
+      NAME: "Mi Perfil",
+      PATH: "(profile)/profile" as const,
+      ENTIRE_PATH: "/(profile)/profile" as const,
+    },
+  },
 } as const;
