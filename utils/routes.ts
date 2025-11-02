@@ -140,10 +140,10 @@ export const ROUTES = {
       PATH: "(landing)/privacy" as const,
       ENTIRE_PATH: "/(landing)/privacy" as const,
     },
-    QA: {
+    FAQ: {
       NAME: "Preguntas frecuentes",
-      PATH: "(landing)/qa" as const,
-      ENTIRE_PATH: "/(landing)/qa" as const,
+      PATH: "(landing)/faq" as const,
+      ENTIRE_PATH: "/(landing)/faq" as const,
     },
     TERMS: {
       NAME: "Términos y condiciones",
