@@ -11,13 +11,9 @@ import { styles } from "./styles";
 
 interface ItemCardProps {
   product: PaginatedProductoResponseDTO;
-  onAddToCart?: (
-    product: PaginatedProductoResponseDTO,
-    quantity: number
-  ) => void;
 }
 
-export default function ItemCard({ product, onAddToCart }: ItemCardProps) {
+export default function ItemCard({ product }: ItemCardProps) {
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
 
@@ -26,7 +22,8 @@ export default function ItemCard({ product, onAddToCart }: ItemCardProps) {
   };
 
   const handleConfirm = (quantity: number) => {
-    onAddToCart?.(product, quantity);
+    console.log("Producto agregado:", product.nombre, "Cantidad:", quantity);
+    // Aquí podrías integrar tu contexto o servicio de carrito global
     setShowModal(false);
   };
 
@@ -63,7 +60,6 @@ export default function ItemCard({ product, onAddToCart }: ItemCardProps) {
             {product.categoriaNombre}
           </Text>
 
-          {/* Botón del carrito independiente */}
           <TouchableOpacity
             style={styles.cartButton}
             onPress={(e) => {

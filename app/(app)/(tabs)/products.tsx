@@ -59,10 +59,7 @@ export default function Products() {
           contentContainerStyle={styles.listContainer}
           renderItem={({ item }) => (
             <View style={{ width: cardWidth }}>
-              <ItemCard
-                product={item}
-                onAddToCart={() => console.log("Agregar:", item.nombre)}
-              />
+              <ItemCard product={item} />
             </View>
           )}
           ListEmptyComponent={
