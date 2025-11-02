@@ -1,3 +1,4 @@
+import { QuantityModal } from "@/components/app/quantity/quantity";
 import { TitlePage } from "@/components/app/titlepage/titlepage";
 import { ImageViewer } from "@/components/global/images/images";
 import { Loader } from "@/components/global/loader/loader";
@@ -23,6 +24,7 @@ export default function DetailProduct() {
   const { id } = useLocalSearchParams();
   const [producto, setProducto] = useState<ProductoDTO | null>(null);
   const [loading, setLoading] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -41,6 +43,11 @@ export default function DetailProduct() {
 
     fetchProducto();
   }, [id, router]);
+
+  const handleAddToCart = (quantity: number) => {
+    console.log("Cantidad seleccionada:", quantity);
+    // Aquí puedes integrar tu lógica de carrito
+  };
 
   return (
     <SafeAreaView edges={["top", "left", "right"]} style={{ flex: 1 }}>
@@ -102,10 +109,19 @@ export default function DetailProduct() {
 
         {/* Botón */}
         <View style={styles.footer}>
-          <TouchableOpacity style={styles.addButton}>
+          <TouchableOpacity
+            style={styles.addButton}
+            onPress={() => setShowModal(true)}
+          >
             <Ionicons name="cart-outline" size={18} color="#fff" />
             <Text style={styles.addButtonText}>Agregar al carrito</Text>
           </TouchableOpacity>
+
+          <QuantityModal
+            visible={showModal}
+            onClose={() => setShowModal(false)}
+            onConfirm={handleAddToCart}
+          />
         </View>
       </View>
     </SafeAreaView>
