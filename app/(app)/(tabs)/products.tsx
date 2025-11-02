@@ -17,6 +17,9 @@ export default function Products() {
   const [productos, setProductos] =
     useState<PaginatedResponse<PaginatedProductoResponseDTO>>();
 
+  const screenWidth = Dimensions.get("window").width;
+  const cardWidth = (screenWidth - 16 * 2 - 8) / 2;
+
   useEffect(() => {
     fetchAll(page);
   }, [page]);
@@ -32,9 +35,6 @@ export default function Products() {
       setLoading(false);
     }
   };
-
-  const screenWidth = Dimensions.get("window").width;
-  const cardWidth = (screenWidth - 16 * 2 - 8) / 2;
 
   return (
     <SafeAreaView edges={["top", "left", "right"]} style={{ flex: 1 }}>
