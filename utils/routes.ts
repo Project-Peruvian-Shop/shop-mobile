@@ -3,6 +3,9 @@ export const ROUTES = {
     APP: "(app)" as const,
     DASHBOARD: "(dashboard)" as const,
     AUTH: "(auth)" as const,
+    LANDING: "(landing)" as const,
+    PROFILE: "(profile)" as const,
+    STORE: "(store)" as const,
   },
 
   TABS: {
