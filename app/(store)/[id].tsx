@@ -91,16 +91,17 @@ export default function DetailProduct() {
 
               {/* Imagen + Nombre de categoría */}
               <View style={styles.categoryInfo}>
-                <Text style={styles.usesTitle}>Descripción</Text>
-                <Image
-                  source={{
-                    uri:
-                      producto.categoriaEnlace ||
-                      "https://placehold.co/100x100",
-                  }}
-                  style={styles.categoryThumb}
-                  contentFit="cover"
-                />
+                {producto.categoriaEnlace && (
+                  <Image
+                    source={{ uri: producto.categoriaEnlace }}
+                    style={styles.categoryFullImage}
+                    contentFit="cover"
+                    transition={500}
+                  />
+                )}
+                <Text style={styles.categoryFullName}>
+                  {producto.categoriaNombre}
+                </Text>
               </View>
 
               {/* Usos */}
@@ -198,22 +199,22 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   categoryInfo: {
-    flexDirection: "row",
+    width: "100%",
     alignItems: "center",
-    backgroundColor: "#f8fafc",
-    padding: 10,
-    borderRadius: 10,
+    justifyContent: "center",
     marginBottom: 20,
   },
-  categoryThumb: {
-    width: 50,
-    height: 50,
-    borderRadius: 8,
-    marginRight: 10,
+  categoryFullImage: {
+    width: "100%",
+    height: 180,
+    borderRadius: 12,
+    marginBottom: 10,
   },
-  categoryName: {
-    fontSize: 12,
-    color: "#475569",
+  categoryFullName: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#334155",
+    textAlign: "center",
   },
   usesContainer: {
     marginTop: 10,
