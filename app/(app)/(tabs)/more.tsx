@@ -36,7 +36,7 @@ export default function More() {
       edges={["top", "left", "right"]}
       style={{ flex: 1, backgroundColor: COLORS.WHITE }}
     >
-      <TitlePage title="Más" />
+      <TitlePage title="Más opciones" />
 
       <ScrollView contentContainerStyle={styles.container}>
         {menuItems.map((item, index) => (
