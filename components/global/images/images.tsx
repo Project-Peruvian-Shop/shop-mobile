@@ -50,12 +50,6 @@ export function ImageViewer({ uri, variant = "product" }: ImageViewerProps) {
         onRequestClose={() => setVisible(false)}
       >
         <View style={modalStyles.overlay}>
-          {/* Cerrar tocando fuera */}
-          <Pressable
-            style={modalStyles.pressableBackground}
-            onPress={() => setVisible(false)}
-          />
-
           {/* Botón de cierre */}
           <Pressable
             onPress={() => setVisible(false)}

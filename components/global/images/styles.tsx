@@ -30,9 +30,6 @@ export const modalStyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  pressableBackground: {
-    ...StyleSheet.absoluteFillObject,
-  },
   closeButton: {
     position: "absolute",
     top: 40,
