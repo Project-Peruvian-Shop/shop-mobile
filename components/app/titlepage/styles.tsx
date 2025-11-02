@@ -7,8 +7,8 @@ export const styles = StyleSheet.create({
     padding: 10,
   },
   logo: {
-    width: 40,
-    height: 40,
+    width: 50,
+    height: 50,
     marginRight: 10,
   },
   title: {
