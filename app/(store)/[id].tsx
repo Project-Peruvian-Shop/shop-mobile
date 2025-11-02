@@ -44,7 +44,7 @@ export default function DetailProduct() {
 
   return (
     <SafeAreaView edges={["top", "left", "right"]} style={{ flex: 1 }}>
-      <TitlePage title={`Detalle de Producto ${id}`} />
+      <TitlePage title={`Detalle de Producto`} />
 
       <View style={styles.container}>
         {loading ? <Loader message="Cargando producto..." /> : null}
@@ -91,6 +91,7 @@ export default function DetailProduct() {
 
               {/* Imagen + Nombre de categoría */}
               <View style={styles.categoryInfo}>
+                <Text style={styles.usesTitle}>Descripción</Text>
                 <Image
                   source={{
                     uri:
@@ -241,7 +242,8 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.WHITE,
   },
   addButton: {
-    backgroundColor: "#0f172a",
+    backgroundColor: COLORS.PRIMARY,
+    height: 50,
     borderRadius: 10,
     paddingVertical: 16,
     flexDirection: "row",
