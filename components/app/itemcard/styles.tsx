@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     maxWidth: 340,
     backgroundColor: COLORS.WHITE,
     borderRadius: 20,
-    padding: 20,
+    padding: 16,
     shadowColor: COLORS.BLACK,
     shadowOpacity: 0.1,
     shadowRadius: 3,
@@ -22,9 +22,8 @@ export const styles = StyleSheet.create({
     marginBottom: 16,
   },
   image: {
-    width: 120,
-    height: 120,
-    borderRadius: 16,
+    width: "100%",
+    height: 150,
     resizeMode: "cover",
   },
   name: {
