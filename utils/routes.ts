@@ -118,4 +118,37 @@ export const ROUTES = {
       ENTIRE_PATH: "/(auth)/register" as const,
     },
   },
+
+  LANDING: {
+    ABOUT: {
+      NAME: "¿?Quiénes somos?",
+      PATH: "(landing)/about" as const,
+      ENTIRE_PATH: "/(landing)/about" as const,
+    },
+    CLAIMS: {
+      NAME: "Libro de reclamaciones",
+      PATH: "(landing)/claims" as const,
+      ENTIRE_PATH: "/(landing)/claims" as const,
+    },
+    CONTACT: {
+      NAME: "Contáctanos",
+      PATH: "(landing)/contact" as const,
+      ENTIRE_PATH: "/(landing)/contact" as const,
+    },
+    PRIVACY: {
+      NAME: "Política de privacidad",
+      PATH: "(landing)/privacy" as const,
+      ENTIRE_PATH: "/(landing)/privacy" as const,
+    },
+    QA: {
+      NAME: "Preguntas frecuentes",
+      PATH: "(landing)/qa" as const,
+      ENTIRE_PATH: "/(landing)/qa" as const,
+    },
+    TERMS: {
+      NAME: "Términos y condiciones",
+      PATH: "(landing)/terms" as const,
+      ENTIRE_PATH: "/(landing)/terms" as const,
+    },
+  },
 } as const;
