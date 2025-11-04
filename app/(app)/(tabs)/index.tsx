@@ -14,8 +14,8 @@ export default function Index() {
         {/* Hero section */}
         <View style={{ position: "relative" }}>
           <Image
-            source={require("@/assets/images/logo.png")}
-            style={{ width: "100%", height: 200 }}
+            source={require("@/assets/images/Landing/Home-2.jpg")}
+            style={{ width: "100%", height: 300 }}
             resizeMode="cover"
           />
           <View
@@ -66,11 +66,11 @@ export default function Index() {
           >
             <HomeCard
               title="Cotización de tuberías"
-              icon={require("@/assets/images/logo.png")}
+              icon={require("@/assets/images/Landing/shop.png")}
             />
             <HomeCard
               title="Preguntas frecuentes"
-              icon={require("@/assets/images/logo.png")}
+              icon={require("@/assets/images/Landing/questions.png")}
             />
           </View>
         </View>
@@ -89,23 +89,27 @@ export default function Index() {
           >
             <HomeCard
               title="Alcantarillado"
-              icon={require("@/assets/images/logo.png")}
+              icon={require("@/assets/images/Landing/alcantarillado.png")}
             />
             <HomeCard
               title="Desagüe"
-              icon={require("@/assets/images/logo.png")}
+              icon={require("@/assets/images/Landing/Desagüe.png")}
             />
             <HomeCard
               title="Fluidos de presión UF"
-              icon={require("@/assets/images/logo.png")}
+              icon={require("@/assets/images/Landing/Fluidos_a_presion_UF.png")}
+            />
+            <HomeCard
+              title="Fluidos de presión SP"
+              icon={require("@/assets/images/Landing/Fluidos_a_presion_SP.png")}
             />
             <HomeCard
               title="Fluidos de presión UP"
-              icon={require("@/assets/images/logo.png")}
+              icon={require("@/assets/images/Landing/Fluidos_a_presion_UR.png")}
             />
             <HomeCard
               title="Instalaciones eléctricas"
-              icon={require("@/assets/images/logo.png")}
+              icon={require("@/assets/images/Landing/Instalaciones_electricas.png")}
             />
           </View>
         </View>
