@@ -24,12 +24,12 @@ export function QuantityModal({
 }: QuantityModalProps) {
   const [quantity, setQuantity] = useState(1);
 
-  const handleIncrease = () => setQuantity((prev) => prev + 1);
+  const handleIncrease = () => setQuantity((prev) => (prev < 300 ? prev + 1 : 300));
   const handleDecrease = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
 
   const handleInputChange = (text: string) => {
     const num = parseInt(text, 10);
-    if (!isNaN(num) && num > 0) setQuantity(num);
+    if (!isNaN(num) && num > 0 && num <= 300) setQuantity(num);
     else if (text === "") setQuantity(1);
   };
 
@@ -40,7 +40,7 @@ export function QuantityModal({
   };
 
   useEffect(() => {
-    if (visible) setQuantity(1);
+    if (visible) setQuantity(10);
   }, [visible]);
 
   return (
