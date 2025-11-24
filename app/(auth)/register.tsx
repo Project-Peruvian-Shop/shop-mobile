@@ -1,10 +1,14 @@
+import { Icons } from "@/assets/images/icons";
+import { AlertCustom } from "@/components/app/Alert/alertCustom";
 import { CustomInput } from "@/components/login/input/input";
+import { register } from "@/services/auht.service";
+import { agregarUsuario } from "@/utils/auth";
 import { COLORS } from "@/utils/colors";
 import { ROUTES } from "@/utils/routes";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -13,8 +17,77 @@ export default function Register() {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
+  const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState({
+    visible: false,
+    title: "",
+    message: "",
+    image: null as any,
+  });
   const router = useRouter();
+
+  const handleSubmit = async () => {
+    /*
+      setErrors({});
+  
+      let newErrors: { email?: string; passwordd?: string } = {};
+  
+      // Validación email
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+        newErrors.email = "Ingresa un correo válido";
+      }
+  
+      // Validación contraseña
+      if (passwordd.trim().length < 8) {
+        newErrors.passwordd = "La contraseña debe tener al menos 8 caracteres";
+      }
+  
+      if (Object.keys(newErrors).length > 0) {
+        setErrors(newErrors);
+        return;
+      }
+        */
+
+    if (loading) return;
+    setLoading(true);
+
+    try {
+      const body = {
+        nombre: name.trim(),
+        apellidos: lastName.trim(),
+        email: email.trim(),
+        telefono: phone.trim(),
+        passwordd: password.trim(),
+      };
+
+      const response = await register(body);
+
+      if (response) {
+        // Guardar usuario en AsyncStorage
+        await agregarUsuario(response);
+        setAlert({
+          visible: true,
+          title: "Registro exitoso",
+          message: "Has creado tu cuenta correctamente ",
+          image: Icons.successIcon,
+        });
+        // redirige después de 1 seg
+        setTimeout(() => {
+          router.replace(ROUTES.PROFILE.PROFILE.ENTIRE_PATH);
+        }, 1000);
+      }
+    } catch (err: any) {
+      setAlert({
+        visible: true,
+        title: "Error al iniciar sesión",
+        message: err.message || "Ocurrió un error inesperado.",
+        image: Icons.errorIcon,
+      });
+      console.error("Error en login:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -61,8 +134,16 @@ export default function Register() {
         secureTextEntry
       />
 
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Crear Cuenta</Text>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={handleSubmit}
+        disabled={loading}
+      >
+        {loading ? (
+          <ActivityIndicator color={COLORS.WHITE} />
+        ) : (
+          <Text style={styles.buttonText}>Crear Cuenta</Text>
+        )}
       </TouchableOpacity>
 
       <View style={styles.bottomTextContainer}>
@@ -73,6 +154,17 @@ export default function Register() {
           <Text style={styles.link}>Inicia Sesión aquí</Text>
         </TouchableOpacity>
       </View>
+      {alert.visible && (
+        <AlertCustom
+          visible={alert.visible}
+          title={alert.title}
+          message={alert.message}
+          image={alert.image}
+          onClose={() =>
+            setAlert({ visible: false, title: "", message: "", image: null })
+          }
+        />
+      )}
     </View>
   );
 }
