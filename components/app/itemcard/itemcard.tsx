@@ -9,7 +9,7 @@ import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
-import { ConfirmModal } from "../modalConfirm/modalConfirm";
+import { AlertCustom } from "../Alert/alertCustom";
 import { styles } from "./styles";
 
 interface ItemCardProps {
@@ -18,22 +18,14 @@ interface ItemCardProps {
 
 export default function ItemCard({ product }: ItemCardProps) {
   const router = useRouter();
+
   const [showModal, setShowModal] = useState(false);
   const [modalConfirm, setModalConfirm] = useState(false);
-
   const goToDetail = () => {
     router.push(ROUTES.STORE.DETAILPRODUCT.GO(product.id));
   };
 
   const handleConfirm = async (quantity: number) => {
-    console.log(
-      "Producto agregado:",
-      product.nombre,
-      "Cantidad:",
-      quantity,
-      "Categoría:",
-      product.categoriaNombre
-    );
     await addToCart(product, quantity);
     setShowModal(false);
     setModalConfirm(true);
@@ -46,7 +38,6 @@ export default function ItemCard({ product }: ItemCardProps) {
         activeOpacity={0.8}
         onPress={goToDetail}
       >
-        {/* Imagen centrada */}
         <View style={styles.imageContainer}>
           <Image
             source={
@@ -57,16 +48,13 @@ export default function ItemCard({ product }: ItemCardProps) {
             style={styles.image}
             contentFit="contain"
             transition={500}
-            placeholder="blur"
           />
         </View>
 
-        {/* Título centrado */}
         <Text style={styles.name} numberOfLines={3}>
           {product.nombre}
         </Text>
 
-        {/* Categoría + Botón de carrito */}
         <View style={styles.bottomRow}>
           <Text style={styles.category} numberOfLines={3}>
             {product.categoriaNombre}
@@ -84,14 +72,13 @@ export default function ItemCard({ product }: ItemCardProps) {
         </View>
       </TouchableOpacity>
 
-      {/* Modal de cantidad */}
       <QuantityModal
         visible={showModal}
         onClose={() => setShowModal(false)}
         onConfirm={handleConfirm}
       />
-      {/* Modal de confirmación */}
-      <ConfirmModal
+
+      <AlertCustom
         visible={modalConfirm}
         onClose={() => setModalConfirm(false)}
         title="Producto agregado"

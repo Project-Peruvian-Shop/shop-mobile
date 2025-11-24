@@ -10,14 +10,22 @@ import {
   View,
 } from "react-native";
 
-import { getCart, removeFromCart, updateQuantity } from "@/utils/cartStorage";
+import {
+  CartProductoDTO,
+  getCart,
+  removeFromCart,
+  updateQuantity,
+} from "@/utils/cartStorage";
 
 import { Icons } from "@/assets/images/icons";
+import { obtenerUsuario } from "@/utils/auth";
 import { ROUTES } from "@/utils/routes";
+import { AlertCustom } from "../Alert/alertCustom";
 import { styles } from "./cartTable.styles";
 
 export default function CartTable() {
-  const [cart, setCart] = useState<any[]>([]);
+  const [cart, setCart] = useState<CartProductoDTO[]>([]);
+  const [alert, setAlert] = useState(false);
   const router = useRouter();
 
   const loadCart = async () => {
@@ -44,10 +52,19 @@ export default function CartTable() {
 
   const totalProductos = cart.reduce((acc, item) => acc + item.cantidad, 0);
 
-  const handleCheckout = () => {
-    if (cart.length === 0) return;
+  const handleCheckout = async () => {
+    if (cart.length === 0) {
+      setAlert(true);
+      return;
+    }
 
-    router.push(ROUTES.STORE.COTIZACION.ENTIRE_PATH);
+    const usuario = await obtenerUsuario();
+    console.log("Usuario obtenido:", obtenerUsuario());
+    if (!usuario) {
+      router.push(ROUTES.AUTH.LOGIN.ENTIRE_PATH);
+    } else {
+      router.push(ROUTES.STORE.COTIZACION.ENTIRE_PATH);
+    }
   };
 
   return (
@@ -163,6 +180,15 @@ export default function CartTable() {
           </View>
         </>
       )}
+      <AlertCustom
+        visible={alert}
+        title="Carrito vacío"
+        message="No hay productos en el carrito para solicitar una cotización."
+        image={Icons.infoIcon}
+        onClose={() => {
+          setAlert(false);
+        }}
+      />
     </View>
   );
 }
