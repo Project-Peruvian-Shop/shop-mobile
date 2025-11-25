@@ -15,6 +15,8 @@ export const styles = StyleSheet.create({
     marginRight: 10,
   },
   title: {
+    textAlign: "center",
+    flex: 2,
     fontSize: 24,
     fontWeight: "bold",
     color: COLORS.WHITE,
