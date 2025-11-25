@@ -15,17 +15,16 @@ import type {
   ApiResponse,
   PaginatedResponse,
 } from "@/services/global.interfaces";
-import { URL_API } from "@/utils/constants";
-import axios from "axios";
+import api from "@/utils/api";
 
-const BASE_URL = URL_API + "/cotizacion";
+const BASE_URL =  "/cotizacion";
 
 export async function postCotizacion(
   body: CotizacionRequestDTO
 ): Promise<CotizacionCreateResponseDTO[]> {
   const url = `${BASE_URL}/create`;
 
-  const res = await axios.post<ApiResponse<CotizacionCreateResponseDTO[]>>(
+  const res = await api.post<ApiResponse<CotizacionCreateResponseDTO[]>>(
     url,
     body
   );
@@ -40,7 +39,7 @@ export async function getCotizacionesByUserPaginated(
 ): Promise<PaginatedResponse<CotizacionDashboardDTO>> {
   const url = `${BASE_URL}/by-usuario-paginated/${id}?page=${page}&size=${size}`;
 
-  const res = await axios.get<
+  const res = await api.get<
     ApiResponse<PaginatedResponse<CotizacionDashboardDTO>>
   >(url);
 
@@ -52,7 +51,7 @@ export async function getCotizacionById(
 ): Promise<CotizacionFullDTO> {
   const url = `${BASE_URL}/${id}`;
 
-  const res = await axios.get<ApiResponse<CotizacionFullDTO>>(url);
+  const res = await api.get<ApiResponse<CotizacionFullDTO>>(url);
 
   return res.data.data;
 }
@@ -63,7 +62,7 @@ export async function getAllCotizaciones(
 ): Promise<PaginatedResponse<CotizacionDashboardDTO>> {
   const url = `${BASE_URL}/dashboard-paginated?page=${page}&size=${size}`;
 
-  const res = await axios.get<
+  const res = await api.get<
     ApiResponse<PaginatedResponse<CotizacionDashboardDTO>>
   >(url);
 
@@ -79,7 +78,7 @@ export async function getSearchCotizaciones(
     busqueda
   )}&page=${page}&size=${size}`;
 
-  const res = await axios.get<
+  const res = await api.get<
     ApiResponse<PaginatedResponse<CotizacionDashboardDTO>>
   >(url);
 
@@ -89,7 +88,7 @@ export async function getSearchCotizaciones(
 export async function getQuantityCotizaciones(): Promise<number> {
   const url = `${BASE_URL}/dashboard-quantity`;
 
-  const res = await axios.get<ApiResponse<number>>(url);
+  const res = await api.get<ApiResponse<number>>(url);
 
   return res.data.data;
 }
@@ -100,7 +99,7 @@ export async function updateObservacionCotizacion(
 ): Promise<CotizacionObservacionDTO> {
   const url = `${BASE_URL}/observaciones/${id}`;
 
-  const res = await axios.put<ApiResponse<CotizacionObservacionDTO>>(url, {
+  const res = await api.put<ApiResponse<CotizacionObservacionDTO>>(url, {
     observaciones,
   });
 
@@ -120,7 +119,7 @@ export async function change_state(
 ): Promise<CotizacionChangeStateDTO> {
   const url = `${BASE_URL}/change_state/${id}`;
 
-  const res = await axios.put<ApiResponse<CotizacionChangeStateDTO>>(url, {
+  const res = await api.put<ApiResponse<CotizacionChangeStateDTO>>(url, {
     nuevoEstado,
     observacion,
   });
@@ -137,7 +136,7 @@ export async function uploadCotizacionPDF(
   const formData = new FormData();
   formData.append("archivo", file);
 
-  const response = await axios.post<ApiResponse<CotizacionPdfDTO>>(
+  const response = await api.post<ApiResponse<CotizacionPdfDTO>>(
     url,
     formData,
     {
@@ -155,7 +154,7 @@ export async function getProductoCarritoDetalle(
 ): Promise<ProductoCarritoDetalleDTO[]> {
   const url = `${BASE_URL}/productos-por-cotizacion/${cotizacionId}`;
 
-  const res = await axios.get<ApiResponse<ProductoCarritoDetalleDTO[]>>(url);
+  const res = await api.get<ApiResponse<ProductoCarritoDetalleDTO[]>>(url);
 
   return res.data.data;
 }
@@ -165,7 +164,7 @@ export async function getHistorialCambiosEstado(
 ): Promise<CotizacionHistorialDTO[]> {
   const url = `${BASE_URL}/${cotizacionId}/historial`;
 
-  const res = await axios.get<ApiResponse<CotizacionHistorialDTO[]>>(url);
+  const res = await api.get<ApiResponse<CotizacionHistorialDTO[]>>(url);
 
   return res.data.data;
 }

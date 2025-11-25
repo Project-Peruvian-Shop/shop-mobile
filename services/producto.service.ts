@@ -9,10 +9,9 @@ import type {
   ApiResponse,
   PaginatedResponse,
 } from "@/services/global.interfaces";
-import { URL_API } from "@/utils/constants";
-import axios from "axios";
+import api from "@/utils/api";
 
-const BASE_URL = URL_API + "/producto";
+const BASE_URL =  "/producto";
 
 export async function getPaginatedProductos(
   page: number = 0,
@@ -27,7 +26,7 @@ export async function getPaginatedProductos(
   }
 
   const url = `${BASE_URL}/paginated?${params.toString()}`;
-  const res = await axios.get<
+  const res = await api.get<
     ApiResponse<PaginatedResponse<PaginatedProductoResponseDTO>>
   >(url);
 
@@ -36,7 +35,7 @@ export async function getPaginatedProductos(
 
 export async function getProductoById(id: number): Promise<ProductoDTO> {
   const url = `${BASE_URL}/${id}`;
-  const res = await axios.get<ApiResponse<ProductoDTO>>(url);
+  const res = await api.get<ApiResponse<ProductoDTO>>(url);
 
   return res.data.data;
 }
@@ -46,7 +45,7 @@ export async function getAllProductos(
   size: number = 8
 ): Promise<PaginatedResponse<ProductoDashboardDTO>> {
   const url = `${BASE_URL}/dashboard-paginated?page=${page}&size=${size}`;
-  const res = await axios.get<
+  const res = await api.get<
     ApiResponse<PaginatedResponse<ProductoDashboardDTO>>
   >(url);
 
@@ -62,7 +61,7 @@ export async function getSearchProductos(
     busqueda
   )}&page=${page}&size=${size}`;
 
-  const res = await axios.get<
+  const res = await api.get<
     ApiResponse<PaginatedResponse<ProductoDashboardDTO>>
   >(url);
 
@@ -73,7 +72,7 @@ export async function createProducto(
   body: ProductoRequestDTO
 ): Promise<ProductoCreateResponseDTO> {
   const url = `${BASE_URL}/`;
-  const res = await axios.post<ApiResponse<ProductoCreateResponseDTO>>(
+  const res = await api.post<ApiResponse<ProductoCreateResponseDTO>>(
     url,
     body
   );
@@ -86,7 +85,7 @@ export async function updateProducto(
   body: ProductoRequestDTO
 ): Promise<ProductoCreateResponseDTO> {
   const url = `${BASE_URL}/${id}`;
-  const res = await axios.put<ApiResponse<ProductoCreateResponseDTO>>(
+  const res = await api.put<ApiResponse<ProductoCreateResponseDTO>>(
     url,
     body
   );
@@ -96,7 +95,7 @@ export async function updateProducto(
 
 export async function getQuantityProductos(): Promise<number> {
   const url = `${BASE_URL}/dashboard-quantity`;
-  const res = await axios.get<ApiResponse<number>>(url);
+  const res = await api.get<ApiResponse<number>>(url);
 
   return res.data.data;
 }
@@ -106,7 +105,7 @@ export async function getSugeridos(
   categoria: number
 ): Promise<PaginatedProductoResponseDTO[]> {
   const url = `${BASE_URL}/sugeridos?producto=${producto}&categoria=${categoria}`;
-  const res = await axios.get<ApiResponse<PaginatedProductoResponseDTO[]>>(url);
+  const res = await api.get<ApiResponse<PaginatedProductoResponseDTO[]>>(url);
 
   return res.data.data;
 }
