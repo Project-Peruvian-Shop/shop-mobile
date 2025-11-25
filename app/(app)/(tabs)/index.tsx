@@ -60,7 +60,6 @@ export default function Index() {
           <View
             style={{
               flexDirection: "row",
-              flexWrap: "wrap",
               justifyContent: "space-between",
             }}
           >
@@ -78,13 +77,12 @@ export default function Index() {
         {/* Productos */}
         <Title title="PRODUCTOS" />
 
-        <View style={{ paddingVertical: 20 }}>
+        <View style={{ paddingVertical: 10 }}>
           <View
             style={{
               flexDirection: "row",
               flexWrap: "wrap",
               justifyContent: "space-around",
-              paddingHorizontal: 16,
             }}
           >
             <HomeCard
