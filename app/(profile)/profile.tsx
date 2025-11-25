@@ -1,22 +1,34 @@
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
-import { ActivityIndicator, Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { TitlePage } from "@/components/app/titlepage/titlepage";
 
-import {
-  obtenerUsuario
-} from "@/utils/auth";
+import { obtenerUsuario } from "@/utils/auth";
 
 //import { obtenerNuevoToken } from "@/services/auht.service";
 import { Icons } from "@/assets/images/icons";
+import {
+  Action,
+  Column,
+  DashboardTable,
+} from "@/components/dashboard/table/table";
 import { CotizacionDashboardDTO } from "@/models/Cotizacion/Cotizacion_response_dto";
 import { UsuarioProfileDTO } from "@/models/Usuario/Usuario_response_dto";
 import { getCotizacionesByUserPaginated } from "@/services/cotizacion.service";
 import { PaginatedResponse } from "@/services/global.interfaces";
 import { getProfile } from "@/services/usuario.service";
+import { agregarProductosCotizacionAlCarrito } from "@/utils/cartStorage";
 import { COLORS } from "@/utils/colors";
+import { ROUTES } from "@/utils/routes";
 
 export default function Profile() {
   const router = useRouter();
@@ -24,32 +36,12 @@ export default function Profile() {
   // Estados
   const [fechaHora, setFechaHora] = useState(new Date());
   const [usuario, setUsuario] = useState<UsuarioProfileDTO | null>(null);
-  const [cotizaciones, setCotizaciones] = useState<PaginatedResponse<CotizacionDashboardDTO>>();
+  const [cotizaciones, setCotizaciones] =
+    useState<PaginatedResponse<CotizacionDashboardDTO>>();
   const [loading, setLoading] = useState(false);
 
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
-
-  // ------------------------------
-  // REFRESCAR TOKEN
-  // ------------------------------
- /* const checkAndRefreshToken = async (refreshToken: string) => {
-    try {
-      const newToken = await obtenerNuevoToken(refreshToken);
-
-      agregarAuthToken(newToken.accessToken);
-      agregarRefreshToken(newToken.refreshToken);
-
-      agregarUsuario({
-        ...obtenerUsuario(),
-        accessToken: newToken.accessToken,
-        refreshToken: newToken.refreshToken,
-      });
-    } catch (error) {
-      alert("Sesión expirada. Inicia sesión nuevamente.");
-      router.push("/login");
-    }
-  }; */
 
   // ------------------------------
   // ACTUALIZAR HORA CADA SEGUNDO
@@ -74,7 +66,7 @@ export default function Profile() {
       try {
         //await checkAndRefreshToken(localUser.refreshToken);
 
-        const updatedUser =  await obtenerUsuario();
+        const updatedUser = await obtenerUsuario();
         const [userData, cotData] = await Promise.all([
           getProfile(updatedUser.id),
           getCotizacionesByUserPaginated(updatedUser.id, page, 5),
@@ -110,8 +102,26 @@ export default function Profile() {
         return "Desconocido";
     }
   };
+  const columns: Column<CotizacionDashboardDTO>[] = [
+    { header: "Número", accessor: "numeroCotizacion", columnWidth: 120 },
+    { header: "Estado", accessor: "estado", columnWidth: 100 },
+    { header: "Fecha", accessor: "creacion", columnWidth: 140 },
+  ];
+  // acciones de la tabla
+  const actions: Action<CotizacionDashboardDTO>[] = [
+    {
+      label: "Ver",
+      onPress: (row) => router.push(ROUTES.PROFILE.COTIZACIONDETAIL.GO(row.id)),
+    },
+    {
+      label: "Pedir nuevamente",
+      onPress: async (row) => {
+        agregarProductosCotizacionAlCarrito(row.numeroCotizacion, row.id);
+      },
+    },
+  ];
 
-    return (
+  return (
     <SafeAreaView style={{ flex: 1 }}>
       <TitlePage title="Mi Perfil" />
 
@@ -124,26 +134,29 @@ export default function Profile() {
             {/* Datos personales */}
             <View style={styles.personal}>
               <View style={styles.nameContainer}>
-                <Image
-                  source={Icons.userProfileIcon}
-                  style={styles.logo}
-                />
+                <Image source={Icons.userProfileIcon} style={styles.logo} />
                 <View style={styles.textContainer}>
-                  <Text style={styles.name}>{usuario?.nombre ?? "Cargando..."}</Text>
+                  <Text style={styles.name}>
+                    {usuario?.nombre ?? "Cargando..."}
+                  </Text>
                   <Text style={styles.tipo}>{mapperRol(usuario?.rol)}</Text>
                 </View>
               </View>
 
               <View style={styles.datetime}>
                 <Text>Fecha: {fechaHora.toLocaleDateString()}</Text>
-                <Text>Hora: {fechaHora.toLocaleTimeString()}</Text> 
+                <Text>Hora: {fechaHora.toLocaleTimeString()}</Text>
               </View>
-          
+
               <Text style={styles.label}>Correo</Text>
-              <Text style={styles.email}>{usuario?.email ?? "Cargando..."}</Text>
+              <Text style={styles.email}>
+                {usuario?.email ?? "Cargando..."}
+              </Text>
 
               <Text style={styles.label}>Teléfono</Text>
-              <Text style={styles.phone}>{usuario?.telefono ?? "Cargando..."}</Text>
+              <Text style={styles.phone}>
+                {usuario?.telefono ?? "Cargando..."}
+              </Text>
             </View>
           </View>
 
@@ -151,40 +164,24 @@ export default function Profile() {
           <View style={styles.right}>
             <Text style={styles.title}>Cotizaciones anteriores</Text>
 
-            {/* Render seguro */}
-            {cotizaciones === undefined ? (
-              <Text style={{ marginTop: 10 }}>Cargando cotizaciones...</Text>
-            ) : cotizaciones.content.length === 0 ? (
-              <Text style={{ marginTop: 10 }}>
-                No tienes cotizaciones registradas.
-              </Text>
-            ) : (
-              cotizaciones.content.map((coti) => (
-                <View key={coti.id} style={styles.cotizacionCard}>
-                  <Text style={{ fontWeight: "bold", fontSize: 16 }}>
-                    {coti.numeroCotizacion}
-                  </Text>
-                  <Text>Estado: {coti.estado}</Text>
-                  <Text>Fecha: {coti.creacion}</Text>
-                </View>
-              ))
-            )}
-
-            {/* Paginación */}
-            <View style={styles.pagination}>
-              <Text
-                onPress={() => page > 0 && setPage(page - 1)}
-                style={{ color: COLORS.PRIMARY }}
-              >
-                {"< Anterior"}
-              </Text>
-
-              <Text
-                onPress={() => page + 1 < totalPages && setPage(page + 1)}
-                style={{ color: COLORS.PRIMARY }}
-              >
-                {"Siguiente >"}
-              </Text>
+            {/* Contenedor tabla */}
+            <View style={styles.tableContainer}>
+              {loading || cotizaciones === undefined ? (
+                <Text style={{ marginTop: 10 }}>Cargando cotizaciones...</Text>
+              ) : cotizaciones.content.length === 0 ? (
+                <Text style={{ marginTop: 10 }}>
+                  No tienes cotizaciones registradas.
+                </Text>
+              ) : (
+                <DashboardTable
+                  columns={columns}
+                  data={cotizaciones.content}
+                  actions={actions}
+                  currentPage={page}
+                  totalPages={totalPages}
+                  onPageChange={setPage}
+                />
+              )}
             </View>
           </View>
         </ScrollView>
@@ -196,7 +193,7 @@ export default function Profile() {
 const styles = StyleSheet.create({
   content: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "flex-start",
     width: "95%",
     marginVertical: 20,
@@ -219,7 +216,7 @@ const styles = StyleSheet.create({
     padding: 20,
     flexDirection: "column",
     gap: 16,
-    maxHeight: 450,
+    marginBottom: 50,
   },
 
   title: {
@@ -227,7 +224,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: COLORS.SECONDARY,
   },
-
+  tableContainer: { height: 400 },
   personal: {
     padding: 25,
     borderWidth: 1,
@@ -290,11 +287,5 @@ const styles = StyleSheet.create({
     borderColor: "#ddd",
     borderRadius: 10,
     marginTop: 10,
-  },
-
-  pagination: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 15,
   },
 });
