@@ -1,12 +1,13 @@
 import type { PaginatedProductoResponseDTO } from "@/models/Producto/Producto_response_dto";
+import { getProductoCarritoDetalle } from "@/services/cotizacion.service";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Alert } from "react-native";
 
 export interface CartProductoDTO extends PaginatedProductoResponseDTO {
   cantidad: number;
 }
 
 const CART_KEY = "cart_items";
-
 /**
  * Obtiene el carrito desde AsyncStorage
  */
@@ -99,4 +100,55 @@ export const removeFromCart = async (id: number) => {
  */
 export const clearCart = async () => {
   await AsyncStorage.removeItem(CART_KEY);
+};
+/**
+ *
+ * Agregar productos de una cotización al carrito con confirmación
+ *
+ */
+export const agregarProductosCotizacionAlCarrito = async (
+  numeroCotizacion: string,
+  cotizacionId: number
+) => {
+  Alert.alert(
+    "¿Agregar productos al carrito?",
+    `¿Deseas cargar los productos de la cotización ${numeroCotizacion} al carrito?`,
+    [
+      { text: "No, cancelar", style: "cancel" },
+      {
+        text: "Sí, agregar",
+        onPress: async () => {
+          try {
+            // Obtener productos desde backend
+            const productos = await getProductoCarritoDetalle(cotizacionId);
+
+            for (const producto of productos) {
+              addToCart(
+                {
+                  id: producto.id,
+                  nombre: producto.nombre,
+                  imagenUrl: producto.imagenEnlace,
+                  imagenAlt: producto.imagenAlt,
+                  categoriaNombre:
+                    producto.categoriaNombre + " " + producto.categoriaNorma,
+                },
+                producto.cantidad
+              );
+            }
+
+            Alert.alert(
+              "Productos agregados",
+              "Los productos fueron cargados correctamente al carrito."
+            );
+          } catch (error) {
+            console.error(error);
+            Alert.alert(
+              "Error",
+              "No se pudieron cargar los productos. Inténtalo nuevamente."
+            );
+          }
+        },
+      },
+    ]
+  );
 };
