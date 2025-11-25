@@ -2,6 +2,7 @@ import axios, { AxiosHeaders } from "axios";
 import { obtenerNuevoToken } from "../services/auht.service";
 import {
   agregarAuthToken,
+  agregarRefreshToken,
   obtenerAuthToken,
   obtenerRefreshToken,
 } from "../utils/auth";
@@ -20,6 +21,9 @@ const api = axios.create({
 api.interceptors.request.use(async (config) => {
   const token = await obtenerAuthToken();
 
+  if (config.url?.includes("/auth/refresh-token")) {
+    return config;
+  }
   if (!config.headers) {
     config.headers = new AxiosHeaders();
   }
@@ -37,12 +41,16 @@ api.interceptors.request.use(async (config) => {
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
+    // 🔥 LOG PARA DETECTAR EL PROBLEMA REAL
+    console.log("⛔ ERROR INTERCEPTOR:");
+    console.log("Status:", error.response?.status);
+    console.log("Data:", error.response?.data);
+    console.log("URL:", error.config?.url);
     const originalRequest = error.config;
 
     // Token expirado
     if (
-      (error.response?.status === 401 ||
-        error.response?.status === 403) &&
+      (error.response?.status === 401 || error.response?.status === 403) &&
       !originalRequest._retry
     ) {
       originalRequest._retry = true;
@@ -59,9 +67,11 @@ api.interceptors.response.use(
         // Obtener nuevo access token
         const newToken = await obtenerNuevoToken(refreshToken);
 
+        // Guardar nuevos tokens
         await agregarAuthToken(newToken.accessToken);
+        await agregarRefreshToken(newToken.refreshToken);
 
-        // Reintentar con el nuevo token
+        // Reintentar petición original
         originalRequest.headers.Authorization = `Bearer ${newToken.accessToken}`;
 
         return api(originalRequest);
