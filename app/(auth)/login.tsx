@@ -2,7 +2,7 @@ import { Icons } from "@/assets/images/icons";
 import { AlertCustom } from "@/components/app/Alert/alertCustom";
 import { CustomInput } from "@/components/login/input/input";
 import { login } from "@/services/auht.service";
-import { agregarUsuario } from "@/utils/auth";
+import { agregarAuthToken, agregarRefreshToken, agregarUsuario } from "@/utils/auth";
 import { COLORS } from "@/utils/colors";
 import { ROUTES } from "@/utils/routes";
 import { Image } from "expo-image";
@@ -65,6 +65,8 @@ export default function Login() {
       if (response) {
         // Guardar usuario en AsyncStorage
         await agregarUsuario(response);
+        await agregarAuthToken(response.accessToken);
+        await agregarRefreshToken(response.refreshToken);
         setAlert({
           visible: true,
           title: "Inicio de sesión exitoso",
