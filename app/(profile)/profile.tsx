@@ -16,6 +16,7 @@ import { obtenerUsuario } from "@/utils/auth";
 
 //import { obtenerNuevoToken } from "@/services/auht.service";
 import { Icons } from "@/assets/images/icons";
+import MapCard from "@/components/dashboard/mapcard/mapcard";
 import {
   Action,
   Column,
@@ -102,21 +103,46 @@ export default function Profile() {
         return "Desconocido";
     }
   };
+  // columnas
   const columns: Column<CotizacionDashboardDTO>[] = [
-    { header: "Número", accessor: "numeroCotizacion", columnWidth: 120 },
-    { header: "Estado", accessor: "estado", columnWidth: 100 },
-    { header: "Fecha", accessor: "creacion", columnWidth: 140 },
+    { header: "Número", accessor: "numeroCotizacion" },
+    {
+      header: "Fecha",
+      accessor: "creacion",
+      render: (value) => {
+        const fecha = new Date(value as string);
+        return (
+          <Text>
+            {fecha.toLocaleDateString("es-PE", {
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+            })}
+          </Text>
+        );
+      },
+    },
+    {
+      header: "Estado",
+      accessor: "estado",
+      render: (value) => (
+        <MapCard property="estadoCotizacion" value={value as string} />
+      ),
+    },
   ];
+
   // acciones de la tabla
   const actions: Action<CotizacionDashboardDTO>[] = [
     {
       label: "Ver",
-      onPress: (row) => router.push(ROUTES.PROFILE.COTIZACIONDETAIL.GO(row.id)),
+      onPress: (row) => {
+        router.push(ROUTES.PROFILE.COTIZACIONDETAIL.GO(row.id) );
+      },
     },
     {
-      label: "Pedir nuevamente",
+      label: "Volver a Cotizar",
       onPress: async (row) => {
-        agregarProductosCotizacionAlCarrito(row.numeroCotizacion, row.id);
+        await agregarProductosCotizacionAlCarrito(row.numeroCotizacion, row.id);
       },
     },
   ];
