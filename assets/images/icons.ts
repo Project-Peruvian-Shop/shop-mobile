@@ -4,6 +4,7 @@ export const Icons = {
   infoIcon: require("./Icons/info.png"),
   errorIcon: require("./Icons/error.png"),
   userProfileIcon: require("./Icons/user_profile.png"),
+  warningIcon: require("./Icons/warning.png"),
 };
 
 export type IconName = keyof typeof Icons;
