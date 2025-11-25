@@ -13,7 +13,7 @@ export const agregarUsuario = async (usuario: UsuarioResponseDto) => {
   }
 };
 
-export const obtenerUsuario = async (): Promise<UsuarioResponseDto | null> => {
+export const obtenerUsuario =  async () => {
   try {
     const usuario = await AsyncStorage.getItem("usuario");
     return usuario ? JSON.parse(usuario) : null;
@@ -35,56 +35,33 @@ export const eliminarUsuario = async () => {
 // ACCESS TOKEN
 // =============================
 
-export const agregarAuthToken = async (accessToken: string) => {
-  try {
-    await AsyncStorage.setItem("authToken", accessToken);
-  } catch (error) {
-    console.error("Error guardando authToken:", error);
-  }
+export const agregarAuthToken = (accessToken: string) => {
+  AsyncStorage.setItem("authToken", accessToken);
 };
 
-export const obtenerAuthToken = async (): Promise<string | null> => {
-  try {
-    return await AsyncStorage.getItem("authToken");
-  } catch (error) {
-    console.error("Error obteniendo authToken:", error);
-    return null;
-  }
+export const obtenerAuthToken = () => {
+  return AsyncStorage.getItem("authToken");
 };
 
-export const eliminarAuthToken = async () => {
-  try {
-    await AsyncStorage.removeItem("authToken");
-  } catch (error) {
-    console.error("Error eliminando authToken:", error);
-  }
+export const eliminarAuthToken = () => {
+  AsyncStorage.removeItem("authToken");
 };
 
 // =============================
 // REFRESH TOKEN
 // =============================
 
-export const agregarRefreshToken = async (refreshToken: string) => {
-  try {
-    await AsyncStorage.setItem("refreshToken", refreshToken);
-  } catch (error) {
-    console.error("Error guardando refreshToken:", error);
-  }
+export const agregarRefreshToken = (refreshToken: string) => {
+  AsyncStorage.setItem("refreshToken", refreshToken);
 };
 
-export const obtenerRefreshToken = async (): Promise<string | null> => {
-  try {
-    return await AsyncStorage.getItem("refreshToken");
-  } catch (error) {
-    console.error("Error obteniendo refreshToken:", error);
-    return null;
-  }
+export const obtenerRefreshToken = () => {
+  return AsyncStorage.getItem("refreshToken");
 };
 
-export const eliminarRefreshToken = async () => {
-  try {
-    await AsyncStorage.removeItem("refreshToken");
-  } catch (error) {
-    console.error("Error eliminando refreshToken:", error);
-  }
+export const eliminarRefreshToken = () => {
+  AsyncStorage.removeItem("refreshToken");
 };
+
+
+
