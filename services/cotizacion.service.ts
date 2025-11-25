@@ -117,13 +117,12 @@ export async function change_state(
     | "CERRADA",
   observacion: string
 ): Promise<CotizacionChangeStateDTO> {
-  const url = `${BASE_URL}/change_state/${id}`;
+  const url = `${BASE_URL}/change-state/${id}`;
 
   const res = await api.put<ApiResponse<CotizacionChangeStateDTO>>(url, {
     nuevoEstado,
     observacion,
   });
-
   return res.data.data;
 }
 
@@ -165,6 +164,19 @@ export async function getHistorialCambiosEstado(
   const url = `${BASE_URL}/${cotizacionId}/historial`;
 
   const res = await api.get<ApiResponse<CotizacionHistorialDTO[]>>(url);
+
+  return res.data.data;
+}
+export async function getProductosByCotizacionId(
+  cotizacionId: number,
+  page: number = 0,
+  size: number = 2
+): Promise<PaginatedResponse<ProductoCarritoDetalleDTO>> {
+  const url = `${BASE_URL}/${cotizacionId}/productos?page=${page}&size=${size}`;
+
+  const res = await api.get<
+    ApiResponse<PaginatedResponse<ProductoCarritoDetalleDTO>>
+  >(url);
 
   return res.data.data;
 }
