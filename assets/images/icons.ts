@@ -13,6 +13,11 @@ export const Icons = {
   misionIcon: require("./About_company/mision.png"),
   visionIcon: require("./About_company/vision.png"),
   aboutIcon: require("./About_company/user_icon.png"),
+  icon1: require("./FAQ/icon_one_question.png"),
+  icon2: require("./FAQ/icon_two_question.png"),
+  icon3: require("./FAQ/icon_three_question.png"),
+  icon4: require("./FAQ/icon_four_question.png"),
+  icon5: require("./FAQ/icon_five_question.png"),
 };
 
 export type IconName = keyof typeof Icons;
