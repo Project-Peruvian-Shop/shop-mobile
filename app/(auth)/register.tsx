@@ -2,7 +2,7 @@ import { Icons } from "@/assets/images/icons";
 import { AlertCustom } from "@/components/app/Alert/alertCustom";
 import { CustomInput } from "@/components/login/input/input";
 import { register } from "@/services/auht.service";
-import { agregarUsuario } from "@/utils/auth";
+import { agregarUsuario, eliminarUsuario } from "@/utils/auth";
 import { COLORS } from "@/utils/colors";
 import { ROUTES } from "@/utils/routes";
 import { Image } from "expo-image";
@@ -64,6 +64,7 @@ export default function Register() {
 
       if (response) {
         // Guardar usuario en AsyncStorage
+        await eliminarUsuario();
         await agregarUsuario(response);
         setAlert({
           visible: true,

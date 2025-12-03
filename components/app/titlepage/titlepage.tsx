@@ -5,9 +5,10 @@ import { styles } from "./styles";
 
 interface TitlePageProps {
   title: string;
+  img?: boolean;
 }
 
-export const TitlePage: React.FC<TitlePageProps> = ({ title }) => {
+export const TitlePage: React.FC<TitlePageProps> = ({ title, img = true }) => {
   const router = useRouter();
 
   const handlePress = () => {
@@ -17,11 +18,13 @@ export const TitlePage: React.FC<TitlePageProps> = ({ title }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={handlePress}>
-      <Image
-        source={require("@/assets/images/logo.png")}
-        style={styles.logo}
-        contentFit="contain"
-      />
+      {img && (
+        <Image
+          source={require("@/assets/images/logo.png")}
+          style={styles.logo}
+          contentFit="contain"
+        />
+      )}
       </TouchableOpacity>
       <Text style={styles.title}>{title}</Text>
     </View>

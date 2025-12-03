@@ -1,111 +1,79 @@
-import axios, { AxiosHeaders } from "axios";
-import { obtenerNuevoToken } from "../services/auht.service";
-import {
-  agregarAuthToken,
-  agregarRefreshToken,
-  obtenerAuthToken,
-  obtenerRefreshToken,
-} from "../utils/auth";
+import { obtenerNuevoToken } from "@/services/auht.service";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 import { URL_API } from "./constants";
 
-// Si usas ENV:
-const API_URL = URL_API;
-
 const api = axios.create({
-  baseURL: API_URL,
+  baseURL: URL_API,
 });
 
-// -------------------------------
-// 🔹 Interceptor de REQUEST
-// -------------------------------
+// REQUEST INTERCEPTOR
 api.interceptors.request.use(async (config) => {
-  const token = await obtenerAuthToken();
-
-  if (config.url?.includes("/auth/refresh-token")) {
-    return config;
+  const accessToken = await AsyncStorage.getItem("accessToken");
+  if (accessToken) {
+    config.headers.Authorization = `Bearer ${accessToken}`;
   }
-  if (!config.headers) {
-    config.headers = new AxiosHeaders();
-  }
-
-  if (token) {
-    config.headers.set("Authorization", `Bearer ${token}`);
-  }
-
   return config;
 });
 
-// -------------------------------
-// 🔹 Interceptor de RESPONSE
-// -------------------------------
+// REFRESH CONTROL
+let isRefreshing = false;
+let refreshSubscribers: ((token: string) => void)[] = [];
+
+function onRefreshed(token: string) {
+  refreshSubscribers.forEach((cb) => cb(token));
+  refreshSubscribers = [];
+}
+
+// RESPONSE INTERCEPTOR
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
-    // 🔥 LOG PARA DETECTAR EL PROBLEMA REAL
-    console.log("⛔ ERROR INTERCEPTOR:");
-    console.log("Status:", error.response?.status);
-    console.log("Data:", error.response?.data);
-    console.log("URL:", error.config?.url);
     const originalRequest = error.config;
 
-    // Token expirado
+    const status = error.response?.status;
+
     if (
-      (error.response?.status === 401 || error.response?.status === 403) &&
-      !originalRequest._retry
+      (status === 401 || status === 403) &&
+      !originalRequest._retry &&
+      !originalRequest.url.includes("/auth/refresh-token")
     ) {
       originalRequest._retry = true;
 
-      try {
-        const refreshToken = await obtenerRefreshToken();
+      const refreshToken = await AsyncStorage.getItem("refreshToken");
 
-        if (!refreshToken) {
-          console.warn("No hay refresh token, navegando al login...");
-          redirectToLogin();
-          return Promise.reject(error);
+      if (!refreshToken) return Promise.reject(error);
+
+      if (!isRefreshing) {
+        isRefreshing = true;
+
+        try {
+          const res = await obtenerNuevoToken(refreshToken);
+
+          const newAccess = res.accessToken;
+          const newRefresh = res.refreshToken;
+
+          await AsyncStorage.setItem("accessToken", newAccess);
+          await AsyncStorage.setItem("refreshToken", newRefresh);
+
+          isRefreshing = false;
+          onRefreshed(newAccess);
+        } catch (err) {
+          isRefreshing = false;
+          return Promise.reject(err);
         }
-
-        // Obtener nuevo access token
-        const newToken = await obtenerNuevoToken(refreshToken);
-
-        // Guardar nuevos tokens
-        await agregarAuthToken(newToken.accessToken);
-        await agregarRefreshToken(newToken.refreshToken);
-
-        // Reintentar petición original
-        originalRequest.headers.Authorization = `Bearer ${newToken.accessToken}`;
-
-        return api(originalRequest);
-      } catch (e) {
-        console.log("No se pudo refrescar el token", e);
-        redirectToLogin();
-        return Promise.reject(e);
       }
+
+      return new Promise((resolve) => {
+        refreshSubscribers.push((newToken) => {
+          originalRequest.headers.Authorization = `Bearer ${newToken}`;
+          resolve(api(originalRequest));
+        });
+      });
     }
 
     return Promise.reject(error);
   }
 );
-
-// -------------------------------
-// 🔹 Función auxiliar para navegar al login
-// -------------------------------
-let navigationRef: any = null;
-
-export function setNavigationRef(navigation: any) {
-  navigationRef = navigation;
-}
-
-function redirectToLogin() {
-  if (navigationRef) {
-    navigationRef.reset({
-      index: 0,
-      routes: [{ name: "Login" }],
-    });
-  } else {
-    console.error(
-      "navigationRef no está configurado. Llama setNavigationRef() en App.tsx"
-    );
-  }
-}
 
 export default api;

@@ -18,6 +18,11 @@ export const Icons = {
   icon3: require("./FAQ/icon_three_question.png"),
   icon4: require("./FAQ/icon_four_question.png"),
   icon5: require("./FAQ/icon_five_question.png"),
+  facebook: require("./rrss/facebookPrimary.png"),
+  instagram: require("./rrss/instagramPrimary.png"),
+  tiktok: require("./rrss/tiktokPrimary.png"),
+  whatsappPri: require("./rrss/whatsappPrimary.png"),
+  locationContact: require("./Contact/location_contact.png")
 };
 
 export type IconName = keyof typeof Icons;
